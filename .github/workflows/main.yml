@@ -22,7 +22,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Update JSONs
         run: |
-          curl -o image/Calendar.png ${{ secret.CAL_URL }}
+          curl -o image/calendar.png ${{ secret.CAL_URL }}
           
       - name: Update resources
         uses: test-room-7/action-update-file@v1
