@@ -5,7 +5,7 @@ name: Update Calendar
 # Controls when the workflow will run
 on:
   schedule:
-    - cron: "50 10 * * *"
+    - cron: "5 11 * * *"
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -22,7 +22,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Update JSONs
         run: |
-          curl -o image/calendar.png ${{ secret.CAL_URL }}
+          curl -o image/calendar.png ${{ secrets.CAL_URL }}
           
       - name: Update resources
         uses: test-room-7/action-update-file@v1
@@ -30,4 +30,4 @@ jobs:
             file-path: |
                 image/calendar.png
             commit-msg: Update resources
-            github-token: ${{ secret.GH_TOKEN }}
+            github-token: ${{ secrets.GH_TOKEN }}
