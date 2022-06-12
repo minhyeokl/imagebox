@@ -1,4 +1,11 @@
+* {
+    margin: 0;
+}
 #bookContainer {
-    width: 100%;
-    max-width: 800px;
+    width: 70%;
+    min-width: 500px;
+}
+#menuContainer {
+    width: 30%;
+    min-width: 150px;
 }
