@@ -1,13 +1,11 @@
-* {
-    margin: 0;
-}
-
 #bookContainer {
     display: inline-block;
     width: 70%;
     height: 100%;
     overflow-y: scroll;
     min-width: 500px;
+    padding: 30px;
+    box-sizing: border-box;
 }
 
 #menuContainer {
@@ -21,13 +19,71 @@
 
 #menunav {
     width: 100%;
-    height: 5%;
+    height: 130px;
     overflow-y: scroll;
-    border-bottom: 1px black;
 }
 
 #menubar {
     width: 100%;
-    height: 95%;
+    height: calc(100vh - 130px);
     overflow-y: scroll;
+}
+
+ul {
+    list-style:none;
+    padding-left: 15px;
+}
+
+.menubox {
+    border-top: 2px solid black;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+section[data-type="chapter"] {
+    border-bottom: 5px solid black;
+    margin-top: 3rem;
+}
+
+div[data-type="tip"], div[data-type="note"], div[data-type="warning"]{
+    padding: 20px;
+    padding-left: 80px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+}
+
+:not(blockquote)>p:not([class^="figcap"]):not([class^="tabcap"]) em, :not(blockquote)>p:not([class^="figcap"]):not([class^="tabcap"]) strong, table em, table strong {
+    background-color: lightseagreen;
+}
+
+table {
+    margin-bottom: 2em;
+    border: 1px solid gray;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+pre {
+    page-break-inside: avoid;
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background-color: whitesmoke;
+    border-left: 8px solid lightgray;
+    padding-left: 4px;
+    color: #000;
+    font-family: monospace;
+    font-size: 0.98em;
+    font-weight: normal;
+}
+
+code {
+    color: #000;
+    font-family: monospace;
+    font-size: 0.98em;
+    font-weight: normal;
+}
+li>a{
+   text-decoration: none; 
 }
