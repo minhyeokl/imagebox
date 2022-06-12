@@ -69,7 +69,7 @@ pre {
     white-space: pre;
     white-space: pre-wrap;
     word-wrap: break-word;
-    background-color: whitesmoke;
+    background-color: lightyellow;
     border-left: 8px solid lightgray;
     padding-left: 4px;
     color: #000;
@@ -84,6 +84,7 @@ code {
     font-size: 0.98em;
     font-weight: normal;
 }
-li>a{
+
+li>a {
    text-decoration: none; 
 }
