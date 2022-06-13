@@ -21,6 +21,7 @@
     width: 100%;
     height: 130px;
     overflow-y: scroll;
+    font-size: 0.8rem;
 }
 
 #menubar {
@@ -86,7 +87,8 @@ code {
 }
 
 li>a {
-   text-decoration: none; 
+   text-decoration: none;
+   font-size: 0.8rem;
 }
 
 img {
