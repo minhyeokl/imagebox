@@ -30,11 +30,6 @@
     overflow-y: scroll;
 }
 
-ul {
-    list-style:none;
-    padding-left: 15px;
-}
-
 .menubox {
     border-top: 2px solid black;
     padding-top: 2rem;
@@ -86,7 +81,12 @@ code {
     font-weight: normal;
 }
 
-li>a {
+.menubox ul {
+    list-style:none;
+    padding-left: 15px;
+}
+
+.menubox li>a {
    text-decoration: none;
    font-size: 0.8rem;
 }
