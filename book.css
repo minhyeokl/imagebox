@@ -89,7 +89,7 @@ li>a {
    text-decoration: none; 
 }
 
-#book-content #sbo-rt-content figure img {
+img {
     margin-bottom: 8px;
     width: auto!important;
     height: auto!important;
