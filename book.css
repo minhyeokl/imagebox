@@ -88,3 +88,12 @@ code {
 li>a {
    text-decoration: none; 
 }
+
+#book-content #sbo-rt-content figure img {
+    margin-bottom: 8px;
+    width: auto!important;
+    height: auto!important;
+    max-width: 100%;
+    border: 0;
+    margin: 0 auto;
+}
