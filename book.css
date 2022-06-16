@@ -114,3 +114,7 @@ img {
 .sidebar h5{
     text-align: center;
 }
+
+::-webkit-scrollbar {
+    display: none;
+}
