@@ -115,6 +115,6 @@ img {
     text-align: center;
 }
 
-::-webkit-scrollbar {
+#menucontainer::-webkit-scrollbar, .menubox.menucontainer::-webkit-scrollbar {
     display: none;
 }
