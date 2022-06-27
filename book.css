@@ -115,6 +115,11 @@ img {
     text-align: center;
 }
 
-#menucontainer::-webkit-scrollbar, .menubox.menucontainer::-webkit-scrollbar {
+#menucontainer::-webkit-scrollbar, .menubox::-webkit-scrollbar {
     display: none;
+}
+
+p>img, span>img, h6>img{
+    width: 15px!important;
+    height: auto!important;
 }
