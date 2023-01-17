@@ -9,10 +9,6 @@ html, body{
     font-family: 'Pretendard' !important;
 }
 
-#sbo-rt-content{
-    font-family: 'Pretendard' !important;
-}
-
 #bookContainer {
     display: inline-block;
     width: 70%;
@@ -21,6 +17,8 @@ html, body{
     min-width: 500px;
     padding: 0 5%;
     box-sizing: border-box;
+    font-family: 'Pretendard' !important;
+
 }
 
 #menuContainer {
