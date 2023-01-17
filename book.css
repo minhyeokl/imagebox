@@ -6,7 +6,7 @@
     font-style: normal;
 }
 html, body{
-    font-family: 'Pretendard' !important;
+    font-family: 'Pretendard';
 }
 
 #bookContainer {
@@ -17,8 +17,6 @@ html, body{
     min-width: 500px;
     padding: 0 5%;
     box-sizing: border-box;
-    font-family: 'Pretendard' !important;
-
 }
 
 #menuContainer {
@@ -130,3 +128,6 @@ p>img, span>img, h6>img{
     height: auto!important;
 }
 
+#sbo-rt-content html, #sbo-rt-content div, #sbo-rt-content div, #sbo-rt-content span, #sbo-rt-content applet, #sbo-rt-content object, #sbo-rt-content iframe, #sbo-rt-content h1, #sbo-rt-content h2, #sbo-rt-content h3, #sbo-rt-content h4, #sbo-rt-content h5, #sbo-rt-content h6, #sbo-rt-content p, #sbo-rt-content blockquote, #sbo-rt-content pre, #sbo-rt-content a, #sbo-rt-content abbr, #sbo-rt-content acronym, #sbo-rt-content address, #sbo-rt-content big, #sbo-rt-content cite, #sbo-rt-content code, #sbo-rt-content del, #sbo-rt-content dfn, #sbo-rt-content em, #sbo-rt-content img, #sbo-rt-content ins, #sbo-rt-content kbd, #sbo-rt-content q, #sbo-rt-content s, #sbo-rt-content samp, #sbo-rt-content small, #sbo-rt-content strike, #sbo-rt-content strong, #sbo-rt-content sub, #sbo-rt-content sup, #sbo-rt-content tt, #sbo-rt-content var, #sbo-rt-content b, #sbo-rt-content u, #sbo-rt-content i, #sbo-rt-content center, #sbo-rt-content dl, #sbo-rt-content dt, #sbo-rt-content dd, #sbo-rt-content ol, #sbo-rt-content ul, #sbo-rt-content li, #sbo-rt-content fieldset, #sbo-rt-content form, #sbo-rt-content label, #sbo-rt-content legend, #sbo-rt-content table, #sbo-rt-content caption, #sbo-rt-content tdiv, #sbo-rt-content tfoot, #sbo-rt-content thead, #sbo-rt-content tr, #sbo-rt-content th, #sbo-rt-content td, #sbo-rt-content article, #sbo-rt-content aside, #sbo-rt-content canvas, #sbo-rt-content details, #sbo-rt-content embed, #sbo-rt-content figure, #sbo-rt-content figcaption, #sbo-rt-content footer, #sbo-rt-content header, #sbo-rt-content hgroup, #sbo-rt-content menu, #sbo-rt-content nav, #sbo-rt-content output, #sbo-rt-content ruby, #sbo-rt-content section, #sbo-rt-content summary, #sbo-rt-content time, #sbo-rt-content mark, #sbo-rt-content audio, #sbo-rt-content video {
+    font-family: 'Pretendard';
+}
