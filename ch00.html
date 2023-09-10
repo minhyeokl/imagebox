@@ -1,0 +1,182 @@
+<html>
+
+<head>
+    <link href="book.css" rel="stylesheet" />
+</head>
+<div id="bookContainer">
+    <div id="sbo-rt-content">
+        <section data-type="preface" epub:type="preface" data-pdf-bookmark="Preface">
+            <div class="preface" id="_preface">
+                <h1>Preface</h1>
+                <p>Within a mere five days of its release,<a contenteditable="false" data-type="indexterm"
+                        data-primary="ChatGPT (OpenAI)" data-secondary="about" id="id190"></a> ChatGPT reached an
+                    impressive one million users, sending shock waves throughout the tech industry and beyond. <a
+                        contenteditable="false" data-type="indexterm" data-primary="OpenAI" data-secondary="API"
+                        data-tertiary="ChatGPT exposing" data-seealso="ChatGPT" id="id191"></a><a
+                        contenteditable="false" data-type="indexterm"
+                        data-primary="APIs (application programming interfaces)" data-secondary="OpenAI API"
+                        data-tertiary="ChatGPT exposing" data-seealso="ChatGPT" id="id192"></a><a
+                        contenteditable="false" data-type="indexterm" data-primary="text generation"
+                        data-secondary="OpenAI API exposed by ChatGPT" id="id193"></a><a contenteditable="false"
+                        data-type="indexterm" data-primary="GPT models" data-secondary="about" id="id194"></a><a
+                        contenteditable="false" data-type="indexterm" data-primary="GPT-4 (OpenAI)"
+                        data-secondary="about GPT models" id="id195"></a>As a side effect, the OpenAI API for AI-powered
+                    text generation was suddenly brought to light, despite having been available for three years. The
+                    ChatGPT interface showcased the potential of such language models, and suddenly developers and
+                    inventors began to realize the incredible possibilities available at their fingertips.</p>
+                <p>The field of natural language processing has made incredible technical progress over the years, but
+                    until recently, use of the technology was limited to an elite few. The OpenAI API and its
+                    accompanying libraries provide a ready-to-use solution for anyone seeking to build AI-powered
+                    applications. There is no need to have powerful hardware or deep knowledge of artificial
+                    intelligence; with just a few lines of code, developers can integrate incredible features into their
+                    projects at a reasonable cost.</p>
+                <p>We combine our knowledge and experience, Olivier as a data scientist and Marie-Alice as a software
+                    engineer, to give you a broad understanding of how to develop applications with GPT-4 and ChatGPT.
+                    In these pages, you will find clear and detailed explanations of AI concepts, as well as
+                    user-friendly guidelines on how to integrate the OpenAI services effectively, securely, and
+                    cost-consciously.</p>
+                <p>This book is designed to be accessible to all, but some basic Python knowledge is preferred. Through
+                    clear explanations, example projects, and step-by-step instructions, we invite you to discover with
+                    us how GPT-4 and ChatGPT can transform the way we interact with machines.</p>
+
+                <section data-type="sect1" data-pdf-bookmark="Conventions Used in This Book">
+                    <div class="sect1" id="_conventions_used_in_this_book">
+                        <h1>Conventions Used in This Book</h1>
+                        <p>The following typographical conventions are used in this book:</p>
+                        <dl>
+                            <dt><em>Italic</em></dt>
+                            <dd>
+                                <p>Indicates new terms, URLs, email addresses, filenames, and file extensions.</p>
+                            </dd>
+                            <dt><code translate="no">Constant width</code></dt>
+                            <dd>
+                                <p>Used for program listings, as well as within paragraphs to refer to program elements
+                                    such as variable or function names, databases, data types, environment variables,
+                                    statements, and keywords.</p>
+                            </dd>
+                            <dt><strong><code translate="no">Constant width bold</code></strong></dt>
+                            <dd>
+                                <p>Shows commands or other text that should be typed literally by the user.</p>
+                            </dd>
+                            <dt><em><code translate="no">Constant width italic</code></em></dt>
+                            <dd>
+                                <p>Shows text that should be replaced with user-supplied values or by values determined
+                                    by context.</p>
+                            </dd>
+                        </dl>
+                        <div data-type="tip">
+                            <h6>Tip</h6>
+                            <p>This element signifies a tip or suggestion.</p>
+                        </div>
+                        <div data-type="note" epub:type="note">
+                            <h6>Note</h6>
+                            <p>This element signifies a general note.</p>
+                        </div>
+                        <div data-type="warning" epub:type="warning">
+                            <h6>Warning</h6>
+                            <p>This element indicates a warning or caution.</p>
+                        </div>
+                    </div>
+                </section>
+                <section data-type="sect1" data-pdf-bookmark="Using Code Examples">
+                    <div class="sect1" id="_using_code_examples">
+                        <h1>Using Code Examples</h1>
+                        <!--PROD: Please reach out to author to find out if they will be uploading code examples to oreilly.com or their own site (e.g., GitHub). If there is no code download, delete this whole section. If there is, when you email digidist with the link, let them know what you filled in for title_title (should be as close to book title as possible, i.e., learning_python_2e). This info will determine where digidist loads the files.-->
+                        <p>Supplemental material (code examples, exercises, etc.) is available for download at <a
+                                href="https://oreil.ly/DevAppsGPT_GitHub"><em
+                                    class="hyperlink">https://oreil.ly/DevAppsGPT_GitHub</em></a>.</p>
+                        <p>If you have a technical question or a problem using the code examples, please send email to
+                            <a class="email" href="mailto:support@oreilly.com"><em>support@oreilly.com</em></a>.</p>
+                        <p class="fix_tracking">This book is here to help you get your job done. In general, if example
+                            code is offered with this book, you may use it in your programs and documentation. You do
+                            not need to contact us for permission unless you’re reproducing a significant portion of the
+                            code. For example, writing a program that uses several chunks of code from this book does
+                            not require permission. Selling or distributing examples from O’Reilly books does require
+                            permission. Answering a question by citing this book and quoting example code does not
+                            require permission. Incorporating a significant amount of example code from this book into
+                            your product’s documentation does require permission.</p>
+                        <p>We appreciate, but generally do not require, attribution. An attribution usually includes the
+                            title, author, publisher, and ISBN. For example: “<em>Developing Apps with GPT-4 and
+                                ChatGPT</em> by Olivier Caelen and Marie-Alice Blete (O’Reilly). Copyright 2023 Olivier
+                            Caelen and Marie-Alice Blete, 978-1-098-15248-2.”</p>
+                        <p>If you feel your use of code examples falls outside fair use or the permission given above,
+                            feel free to contact us at <a class="email"
+                                href="mailto:permissions@oreilly.com"><em>permissions@oreilly.com</em></a>.</p>
+                    </div>
+                </section>
+                <section data-type="sect1" data-pdf-bookmark="O’Reilly Online Learning">
+                    <div class="sect1" id="_safari_books_online">
+                        <h1>O’Reilly Online Learning</h1>
+                        <div data-type="note" epub:type="note" class="ormenabled">
+                            <h6>Note</h6>
+                            <p>For more than 40 years, <a href="https://oreilly.com" class="orm:hideurl"><em
+                                        class="hyperlink">O’Reilly Media</em></a> has provided technology and business
+                                training, knowledge, and insight to help companies succeed.</p>
+                        </div>
+                        <p>Our unique network of experts and innovators share their knowledge and expertise through
+                            books, articles, and our online learning platform. O’Reilly’s online learning platform gives
+                            you on-demand access to live training courses, in-depth learning paths, interactive coding
+                            environments, and a vast collection of text and video from O’Reilly and 200+ other
+                            publishers. For more information, visit <a href="https://oreilly.com"
+                                class="orm:hideurl"><em>https://oreilly.com</em></a>.</p>
+                    </div>
+                </section>
+                <section data-type="sect1" data-pdf-bookmark="How to Contact Us">
+                    <div class="sect1" id="_how_to_contact_us">
+                        <h1>How to Contact Us</h1>
+                        <p>Please address comments and questions concerning this book to the publisher:</p>
+                        <ul class="simplelist">
+                            <li>O’Reilly Media, Inc.</li>
+                            <li>1005 Gravenstein Highway North</li>
+                            <li>Sebastopol, CA 95472</li>
+                            <li>800-889-8969 (in the United States or Canada)</li>
+                            <li>707-829-7019 (international or local)</li>
+                            <li>707-829-0104 (fax)</li>
+                            <li><a class="email" href="mailto:support@oreilly.com"><em>support@oreilly.com</em></a></li>
+                            <li><a
+                                    href="https://www.oreilly.com/about/contact.html"><em>https://www.oreilly.com/about/contact.html</em></a>
+                            </li>
+                        </ul>
+                        <p>We have a web page for this book, where we list errata, examples, and any additional
+                            information. You can access this page at <a href="https://oreil.ly/devAppsGPT"><em
+                                    class="hyperlink">https://oreil.ly/devAppsGPT</em></a>.</p>
+                        <!--Don't forget to update the link above.-->
+
+                        <p>For news and information about our books and courses, visit <a href="https://oreilly.com"><em
+                                    class="hyperlink">https://oreilly.com</em></a>.</p>
+                        <p>Find us on LinkedIn: <a href="https://linkedin.com/company/oreilly-media"><em
+                                    class="hyperlink">https://linkedin.com/company/oreilly-media</em></a></p>
+                        <p>Follow us on Twitter: <a href="https://twitter.com/oreillymedia"><em
+                                    class="hyperlink">https://twitter.com/oreillymedia</em></a></p>
+                        <p>Watch us on YouTube: <a href="https://youtube.com/oreillymedia"><em
+                                    class="hyperlink">https://youtube.com/oreillymedia</em></a></p>
+                    </div>
+                </section>
+
+
+
+                <section data-type="sect1" data-pdf-bookmark="Acknowledgments">
+                    <div class="sect1" id="acknowledgments">
+                        <h1>Acknowledgments</h1>
+                        <p>Writing a book on one of the fastest-moving AI topics would not have been possible without
+                            the help of many people. We would like to thank the incredible O’Reilly team for their
+                            support, advice, and on-point comments; especially Corbin Collins, Nicole Butterfield, Clare
+                            Laylock, Suzanne Huston, and Audrey Doyle. </p>
+                        <p>The book also benefited from the help of exceptional reviewers who took a lot of time to
+                            provide invaluable feedback. Many thanks to Tom Taulli, Lucas Soares, and Leonie Monigatti.
+                        </p>
+                        <p>Many thanks to our Worldline Labs colleagues for their insights and never-ending discussions
+                            on ChatGPT and the OpenAI services; especially Liyun He Guelton, Guillaume Coter, Luxin
+                            Zhang, and Patrik De Boe. A huge thank you as well to Worldline’s team of developer
+                            advocates who provided support and encouragement from the start; especially Jean-Francois
+                            James and Fanilo Andrianasolo.</p>
+                        <p>And finally, we thank our friends and family for bearing with us during our ChatGPT craze,
+                            allowing us to release this book in such a short time.</p>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </div>
+</div>
+
+</html>

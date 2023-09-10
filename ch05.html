@@ -1,0 +1,524 @@
+<html>
+
+<head>
+    <link href="book.css" rel="stylesheet" />
+</head>
+<div id="bookContainer">
+    <div id="sbo-rt-content"><section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 5. Advancing LLM Capabilities with the LangChain Framework and Plug-ins"><div class="chapter" id="advancing_llm_capabilities_with_the_langchain_fram">
+        <h1><span class="label">Chapter 5. </span>Advancing LLM Capabilities with the LangChain Framework and Plug-ins</h1>
+        <p>This chapter explores the worlds of the LangChain framework and GPT-4 plug-ins. We’ll look at how LangChain enables interaction with different language models and the importance of plug-ins in expanding the capabilities of GPT-4. This advanced knowledge will be fundamental in developing sophisticated, cutting-edge applications that rely on LLMs.</p>
+        <section data-type="sect1" data-pdf-bookmark="The LangChain Framework"><div class="sect1" id="the_langchain_framework">
+          <h1>The LangChain Framework</h1>
+          <p>LangChain is a new framework dedicated<a contenteditable="false" data-type="indexterm" data-primary="LangChain framework" data-secondary="about" id="id1071"></a><a contenteditable="false" data-type="indexterm" data-primary="LangChain framework" data-secondary="installing" id="id1072"></a><a contenteditable="false" data-type="indexterm" data-primary="pip" data-secondary="installing LangChain" id="id1073"></a> to developing LLM-powered apps. You will find that the code integrating LangChain is much more elegant than the example provided in <a data-type="xref" href="ch03.html#building_apps_with_gpt_4_and_chatgpt">Chapter&nbsp;3</a>. The framework also provides many additional possibilities. </p>
+          <p>Installing LangChain is fast and easy with <code translate="no">pip install langchain</code>.</p>
+          <div data-type="warning" epub:type="warning"><h6>Warning</h6>
+            <p>At the time of this writing, LangChain<a contenteditable="false" data-type="indexterm" data-primary="LangChain framework" data-secondary="beta version caution" id="id1074"></a> is still in beta version 0.0.2<em>XX</em>, and new versions are released almost daily. Functionalities may be subject to change, so we recommend using caution when working with this framework.</p>
+          </div>
+          <p>LangChain’s key functionalities are divided into <a contenteditable="false" data-type="indexterm" data-primary="LangChain framework" data-secondary="modules" id="id1075"></a>modules, as depicted in <a data-type="xref" href="#fig_1_langchain_modules">Figure&nbsp;5-1</a>.</p>
+          <figure><div id="fig_1_langchain_modules" class="figure">
+            <img src="/api/v2/epubs/urn:orm:book:9781098152475/files/assets/dagc_0501.png" alt="" width="579" height="554">
+            <h6><span class="label">Figure 5-1. </span>LangChain modules</h6>
+          </div></figure>
+          <p>Following are brief descriptions of these modules:<a contenteditable="false" data-type="indexterm" data-primary="Models module of LangChain" id="id1076"></a><a contenteditable="false" data-type="indexterm" data-primary="Prompts module of LangChain" id="id1077"></a><a contenteditable="false" data-type="indexterm" data-primary="prompt engineering" data-secondary="LangChain" data-tertiary="prompt management" id="id1078"></a><a contenteditable="false" data-type="indexterm" data-primary="prompts" data-secondary="LangChain" data-tertiary="prompt management" id="id1079"></a><a contenteditable="false" data-type="indexterm" data-primary="Indexes module of LangChain" id="id1080"></a><a contenteditable="false" data-type="indexterm" data-primary="Chains module of LangChain" id="id1081"></a><a contenteditable="false" data-type="indexterm" data-primary="Agents module of LangChain" id="id1082"></a><a contenteditable="false" data-type="indexterm" data-primary="Memory module of LangChain" id="id1083"></a></p>
+          <dl>
+            <dt>Models </dt>
+            <dd>
+              <p>The Models module is a standard interface provided by LangChain through which you can interact with various LLMs. The framework supports different model-type integrations from various providers, including OpenAI, Hugging Face, Cohere, GPT4All, and more.</p>
+            </dd>
+            <dt>Prompts </dt>
+            <dd>
+              <p>Prompts are becoming the new standard for programming LLMs. The Prompts module includes many tools for prompt management. </p>
+            </dd>
+            <dt>Indexes </dt>
+            <dd>
+              <p>This module allows you to combine LLMs with your data.</p>
+            </dd>
+            <dt>Chains </dt>
+            <dd>
+              <p>With this module, LangChain provides the Chain interface that allows you to create a sequence of calls that combine multiple models or prompts. </p>
+            </dd>
+            <dt>Agents </dt>
+            <dd>
+              <p>The Agents module introduces the Agent interface. An agent is a component that can process user input, make decisions, and choose the appropriate tools to accomplish a task. It works iteratively, taking action until it reaches a solution.</p>
+            </dd>
+            <dt>Memory </dt>
+            <dd>
+              <p>The Memory module allows you to persist state between chain or agent calls. By default, chains and agents are stateless, meaning they process each incoming request independently, as do the LLMs. </p>
+            </dd>
+          </dl>
+          <p>LangChain is a generic interface<a contenteditable="false" data-type="indexterm" data-primary="large language models (LLMs)" data-secondary="LangChain as generic interface" data-seealso="LangChain framework" id="id1084"></a><a contenteditable="false" data-type="indexterm" data-primary="LangChain framework" data-secondary="documentation link" id="id1085"></a><a contenteditable="false" data-type="indexterm" data-primary="resources online" data-secondary="LangChain" data-tertiary="documentation" id="id1086"></a> for different LLMs; you can review all the integrations <a href="https://oreil.ly/n5yNV"><span>on its documentation page</span></a>. OpenAI and many other LLM providers are in this list of integrations. <a contenteditable="false" data-type="indexterm" data-primary="OPENAI_API_KEY environment variable for API key" data-secondary="LangChain LLM connections" id="id1087"></a><a contenteditable="false" data-type="indexterm" data-primary="OpenAI" data-secondary="API" data-tertiary="OPENAI_API_KEY environment variable" id="id1088"></a><a contenteditable="false" data-type="indexterm" data-primary="APIs (application programming interfaces)" data-secondary="OpenAI API" data-tertiary="OPENAI_API_KEY environment variable" id="id1089"></a><a contenteditable="false" data-type="indexterm" data-primary="environment variable holding API key" data-secondary="OPENAI_API_KEY" data-tertiary="LangChain LLM connections" id="id1090"></a>Most of these integrations need their API key to make a connection. For the OpenAI models, you can do this setup as we saw in <a data-type="xref" href="ch02.html#a_deep_dive_into_the_gpt_4_and_chatgpt_apis">Chapter&nbsp;2</a>, with the key set in an <code translate="no">OPENAI_API_KEY</code> environment variable.</p>
+          <section data-type="sect2" data-pdf-bookmark="Dynamic Prompts"><div class="sect2" id="dynamic_prompts">
+            <h2>Dynamic Prompts</h2>
+            <p>The easiest way to show you how<a contenteditable="false" data-type="indexterm" data-primary="LangChain framework" data-secondary="dynamic prompts" id="id1091"></a><a contenteditable="false" data-type="indexterm" data-primary="prompts" data-secondary="LangChain" data-tertiary="dynamic prompts" id="id1092"></a><a contenteditable="false" data-type="indexterm" data-primary="prompt engineering" data-secondary="LangChain" data-tertiary="dynamic prompts" id="id1093"></a><a contenteditable="false" data-type="indexterm" data-primary="dynamic prompts of LangChain" id="id1094"></a><a contenteditable="false" data-type="indexterm" data-primary="prompts" data-secondary="LangChain" data-tertiary="PromptTemplate" id="id1095"></a><a contenteditable="false" data-type="indexterm" data-primary="prompt engineering" data-secondary="LangChain" data-tertiary="PromptTemplate" id="id1096"></a><a contenteditable="false" data-type="indexterm" data-primary="LangChain framework" data-secondary="dynamic prompts" data-tertiary="PromptTemplate" id="id1097"></a> LangChain works is to present you with a simple script. In this example, OpenAI and LangChain are used to do a simple text <span class="keep-together">completion:</span></p>
+            
+              <pre translate="no" data-type="programlisting" data-code-language="python"><code translate="no" class="kn">from</code> <code translate="no" class="nn">langchain.chat_models</code> <code translate="no" class="kn">import</code> <code translate="no" class="n">ChatOpenAI</code>
+  <code translate="no" class="kn">from</code> <code translate="no" class="nn">langchain</code> <code translate="no" class="kn">import</code> <code translate="no" class="n">PromptTemplate</code><code translate="no" class="p">,</code> <code translate="no" class="n">LLMChain</code>
+  <code translate="no" class="n">template</code> <code translate="no" class="o">=</code> <code translate="no" class="s2">"""Question: </code><code translate="no" class="si">{question}</code><code translate="no" class="s2"></code>
+  <code translate="no" class="s2">Let's think step by step.</code>
+  <code translate="no" class="s2">Answer: """</code>
+  <code translate="no" class="n">prompt</code> <code translate="no" class="o">=</code> <code translate="no" class="n">PromptTemplate</code><code translate="no" class="p">(</code><code translate="no" class="n">template</code><code translate="no" class="o">=</code><code translate="no" class="n">template</code><code translate="no" class="p">,</code> <code translate="no" class="n">input_variables</code><code translate="no" class="o">=</code><code translate="no" class="p">[</code><code translate="no" class="s2">"question"</code><code translate="no" class="p">])</code>
+  <code translate="no" class="n">llm</code> <code translate="no" class="o">=</code> <code translate="no" class="n">ChatOpenAI</code><code translate="no" class="p">(</code><code translate="no" class="n">model_name</code><code translate="no" class="o">=</code><code translate="no" class="s2">"gpt-4"</code><code translate="no" class="p">)</code>
+  <code translate="no" class="n">llm_chain</code> <code translate="no" class="o">=</code> <code translate="no" class="n">LLMChain</code><code translate="no" class="p">(</code><code translate="no" class="n">prompt</code><code translate="no" class="o">=</code><code translate="no" class="n">prompt</code><code translate="no" class="p">,</code> <code translate="no" class="n">llm</code><code translate="no" class="o">=</code><code translate="no" class="n">llm</code><code translate="no" class="p">)</code>
+  <code translate="no" class="n">question</code> <code translate="no" class="o">=</code> <code translate="no" class="s2">""" What is the population of the capital of the country where the</code>
+  <code translate="no" class="s2">Olympic Games were held in 2016? """</code>
+  <code translate="no" class="n">llm_chain</code><code translate="no" class="o">.</code><code translate="no" class="n">run</code><code translate="no" class="p">(</code><code translate="no" class="n">question</code><code translate="no" class="p">)</code></pre>
+         
+            <p>The output is as follows:</p>
+           
+              <pre translate="no" data-type="programlisting">Step 1: Identify the country where the Olympic Games were held in 2016.
+  Answer: The 2016 Olympic Games were held in Brazil.
+  Step 2: Identify the capital of Brazil.
+  Answer: The capital of Brazil is Brasília.
+  Step 3: Find the population of Brasília.
+  Answer: As of 2021, the estimated population of Brasília is around 3.1 million.
+  So, the population of the capital of the country where the Olympic Games were 
+  held in 2016 is around 3.1 million. Note that this is an estimate and may
+  vary slightly.'</pre>
+            
+            <p>The <code translate="no">PromptTemplate</code> is responsible for constructing the input for the model. As such, it is a reproducible way to generate a prompt. It contains an input text string called a <em>template</em>, in which values can be specified via <code translate="no">input_variables</code>. <a contenteditable="false" data-type="indexterm" data-primary="“Let's think step by step” on prompt" data-secondary="LangChain dynamic prompt" data-primary-sortas="Let's think" id="id1098"></a><a contenteditable="false" data-type="indexterm" data-primary="thinking step by step" data-secondary="“Let's think step by step” on prompt" data-tertiary="LangChain dynamic prompt" data-secondary-sortas="Let's think" id="id1099"></a>In our example, the prompt we define automatically adds the “Let’s think step by step” part to the question.</p>
+            <p>The LLM used in this example is GPT-4; currently, the default model is <code translate="no">gpt-3.5-turbo</code>. The model is placed in the variable <code translate="no">llm</code> via the <code translate="no">ChatOpenAI()</code> function. <a contenteditable="false" data-type="indexterm" data-primary="OPENAI_API_KEY environment variable for API key" data-secondary="LangChain LLM connections" data-tertiary="dynamic prompt example" id="id1100"></a><a contenteditable="false" data-type="indexterm" data-primary="environment variable holding API key" data-secondary="OPENAI_API_KEY" data-tertiary="LangChain LLM connections" id="id1101"></a><a contenteditable="false" data-type="indexterm" data-primary="APIs (application programming interfaces)" data-secondary="OpenAI API" data-tertiary="OPENAI_API_KEY environment variable" id="id1102"></a><a contenteditable="false" data-type="indexterm" data-primary="OpenAI" data-secondary="API" data-tertiary="OPENAI_API_KEY environment variable" id="id1103"></a>This function assumes an OpenAI API key is set in the environment variable <code translate="no">OPENAI_API_KEY</code>, like it was in the examples in the previous chapters.</p>
+            <p>The prompt and the model are combined by the function <code translate="no">LLMChain()</code>, which forms a chain with the two elements. Finally, we need to call the <code translate="no">run()</code> function to request completion with the input question. When the <code translate="no">run()</code> function is executed, the <code translate="no">LLMChain</code> formats the prompt template using the input key values provided (and also memory key values, if available), passes the formatted string to the LLM, and finally returns the LLM output. We can see that the model automatically answers the question by applying the “Let’s think step by step” rule.</p>
+            <p>As you can see, dynamic prompts is a simple yet very valuable feature for complex applications and better prompt management.</p>
+          </div></section>
+          <section data-type="sect2" data-pdf-bookmark="Agents and Tools"><div class="sect2" id="agents_and_tools">
+            <h2>Agents and Tools</h2>
+            <p>Agents and tools are the key functionalities<a contenteditable="false" data-type="indexterm" data-primary="LangChain framework" data-secondary="agents and tools" id="ch05ant"></a><a contenteditable="false" data-type="indexterm" data-primary="agents and tools of LangChain framework" id="ch05ant2"></a><a contenteditable="false" data-type="indexterm" data-primary="tools and agents of LangChain framework" id="ch05ant3"></a> of the LangChain framework: they can make your application extremely powerful. They allow you to solve complex problems by making it possible for LLMs to perform actions and integrate with various capabilities.</p>
+            <p>A <em>tool</em> is a particular abstraction around a function that makes it easier for a language model to interact with it. An agent can use a tool to interact with the world. Specifically, the interface of a tool has a single text input and a single text output. There are many predefined tools in LangChain. These include Google search, Wikipedia search, Python REPL, a calculator, a world weather forecast API, and others. <a contenteditable="false" data-type="indexterm" data-primary="LangChain framework" data-secondary="agents and tools" data-tertiary="complete list link" id="id1104"></a><a contenteditable="false" data-type="indexterm" data-primary="agents and tools of LangChain framework" data-secondary="complete list link" id="id1105"></a><a contenteditable="false" data-type="indexterm" data-primary="tools and agents of LangChain framework" data-secondary="complete list link" id="id1106"></a>To get a complete list of tools, check out the <a href="https://oreil.ly/iMtOU">Tools page</a> in the documentation provided by LangChain. <a contenteditable="false" data-type="indexterm" data-primary="LangChain framework" data-secondary="agents and tools" data-tertiary="custom tools" id="id1107"></a><a contenteditable="false" data-type="indexterm" data-primary="agents and tools of LangChain framework" data-secondary="custom tools" id="id1108"></a><a contenteditable="false" data-type="indexterm" data-primary="tools and agents of LangChain framework" data-secondary="custom tools" id="id1109"></a>You can also <a href="https://oreil.ly/_dyBW">build a custom tool</a> and load it into the agent you are using: this makes agents extremely versatile and powerful. </p>
+            <p>As we learned in <a data-type="xref" href="ch04.html#advanced_gpt_4_and_chatgpt_techniques">Chapter&nbsp;4</a>, with<a contenteditable="false" data-type="indexterm" data-primary="thinking step by step" data-secondary="agent that plans its actions" id="ch05agpn"></a><a contenteditable="false" data-type="indexterm" data-primary="“Let's think step by step” on prompt" data-secondary="agent that plans its actions" data-primary-sortas="Let's think" id="ch05agpn2"></a><a contenteditable="false" data-type="indexterm" data-primary="agents and tools of LangChain framework" data-secondary="agent that plans its actions" id="ch05agpn3"></a><a contenteditable="false" data-type="indexterm" data-primary="tools and agents of LangChain framework" data-secondary="agent that plans its actions" id="ch05agpn4"></a> “Let’s think step by step” in the prompt, you can increase, in a sense, the reasoning capacity of your model. Adding this sentence to the prompt asks the model to take more time to answer the question.</p>
+            <p>In this section, we introduce an agent for applications that require a series of intermediate steps. The agent schedules these steps and has access to various tools, deciding which to use to answer the user’s query efficiently. In a way, as with “Let’s think step by step,” the agent will have more time to plan its actions, allowing it to accomplish more complex tasks. </p>
+            <p>The high-level pseudocode of an agent looks like this:</p>
+            <ol>
+              <li>
+                <p>The agent receives some input from the user.</p>
+              </li>
+              <li>
+                <p>The agent decides which tool, if any, to use and what text to enter into that tool.</p>
+              </li>
+              <li>
+                <p>That tool is then invoked with that input text, and an output text is received from the tool.</p>
+              </li>
+              <li>
+                <p>The tool’s output is fed into the context of the agent.</p>
+              </li>
+              <li>
+                <p>Steps 2 through 4 are repeated until the agent decides that it no longer needs to use a tool, at which point it responds directly to the user.</p>
+              </li>
+            </ol>
+            <p>You might notice that this seems close to what we did in <a data-type="xref" href="ch03.html#building_apps_with_gpt_4_and_chatgpt">Chapter&nbsp;3</a>, with the example of the personal assistant who could answer questions and perform actions. LangChain agents allow you to develop this kind of behavior… but much more powerfully.</p>
+            <p>To better illustrate how an agent uses tools in LangChain, <a data-type="xref" href="#fig_2_interaction_between_an_agent_and_tools_in_langchai">Figure&nbsp;5-2</a> provides a visual walkthrough of the interaction.</p>
+            <figure><div id="fig_2_interaction_between_an_agent_and_tools_in_langchai" class="figure">
+              <img src="/api/v2/epubs/urn:orm:book:9781098152475/files/assets/dagc_0502.png" alt="" width="600" height="233">
+              <h6><span class="label">Figure 5-2. </span>Interaction between an agent and tools in LangChain</h6>
+            </div></figure>
+            <p>For this section, we want<a contenteditable="false" data-type="indexterm" data-primary="GPT-3.5 (OpenAI)" data-secondary="agents and tools" id="ch05-at35"></a><a contenteditable="false" data-type="indexterm" data-primary="Wikipedia tool use" id="ch05-at352"></a><a contenteditable="false" data-type="indexterm" data-primary="calculator tool use" id="ch05-at353"></a><a contenteditable="false" data-type="indexterm" data-primary="answering questions" data-secondary="agents and tools" id="ch05-at354"></a><a contenteditable="false" data-type="indexterm" data-primary="question answering" data-secondary="agents and tools" id="ch05-at355"></a> to be able to answer the following question: What is the square root of the population of the capital of the country where the Olympic Games were held in 2016? This question has no real interest, but it is a good demonstration of how LangChain agents and tools can add reasoning capabilities to LLMs. </p>
+            <p>If we ask the question as-is to GPT-3.5 Turbo, we get the following:</p>
+            
+              <pre translate="no" data-type="programlisting">The capital of the country where the Olympic Games were held in 2016 is Rio de
+  Janeiro, Brazil. The population of Rio de Janeiro is approximately 6.32 million
+  people as of 2021. Taking the square root of this population, we get 
+  approximately 2,513.29. Therefore, the square root of the population of 
+  the capital of the country where the Olympic Games were held in 2016 is
+  approximately 2,513.29.</pre>
+          
+            <p>This answer is wrong on two levels: Brazil’s capital is Brasilia, not Rio de Janeiro, and the square root of 6.32 million is 2,513.96. We might be able to get better results by adding “Think step by step” or by using other prompt engineering techniques, but it would still be difficult to trust the result because of the model’s difficulties with reasoning and mathematical operations. Using LangChain gives us better guarantees of accuracy.</p>
+            <p>The following code gives a simple<a contenteditable="false" data-type="indexterm" data-primary="load_tools()" id="ch05-lt"></a><a contenteditable="false" data-type="indexterm" data-primary="initialize_agent()" id="id1110"></a> example of how an agent can use two tools in LangChain: Wikipedia and a calculator. After the tools are created via the function <code translate="no">load_tools()</code>, the agent is created with the function <code translate="no">initialize_agent()</code>. An LLM is needed for the agent’s reasoning; here, GPT-3.5 Turbo is used. The parameter <code translate="no">zero-shot-react-description</code> defines how the agent chooses the tool at each step. By setting the <code translate="no">verbose</code> value to <code translate="no">true</code>, we can view the agent’s reasoning and understand how it arrives at the final decision: </p>
+            
+              <pre translate="no" data-type="programlisting" data-code-language="python"><code translate="no" class="kn">from</code> <code translate="no" class="nn">langchain.chat_models</code> <code translate="no" class="kn">import</code> <code translate="no" class="n">ChatOpenAI</code>
+  <code translate="no" class="kn">from</code> <code translate="no" class="nn">langchain.agents</code> <code translate="no" class="kn">import</code> <code translate="no" class="n">load_tools</code><code translate="no" class="p">,</code> <code translate="no" class="n">initialize_agent</code><code translate="no" class="p">,</code> <code translate="no" class="n">AgentType</code>
+  <code translate="no" class="n">llm</code> <code translate="no" class="o">=</code> <code translate="no" class="n">ChatOpenAI</code><code translate="no" class="p">(</code><code translate="no" class="n">model_name</code><code translate="no" class="o">=</code><code translate="no" class="s2">"gpt-3.5-turbo"</code><code translate="no" class="p">,</code> <code translate="no" class="n">temperature</code><code translate="no" class="o">=</code><code translate="no" class="mi">0</code><code translate="no" class="p">)</code>
+  <code translate="no" class="n">tools</code> <code translate="no" class="o">=</code> <code translate="no" class="n">load_tools</code><code translate="no" class="p">([</code><code translate="no" class="s2">"wikipedia"</code><code translate="no" class="p">,</code> <code translate="no" class="s2">"llm-math"</code><code translate="no" class="p">],</code> <code translate="no" class="n">llm</code><code translate="no" class="o">=</code><code translate="no" class="n">llm</code><code translate="no" class="p">)</code>
+  <code translate="no" class="n">agent</code> <code translate="no" class="o">=</code> <code translate="no" class="n">initialize_agent</code><code translate="no" class="p">(</code>
+      <code translate="no" class="n">tools</code><code translate="no" class="p">,</code> <code translate="no" class="n">llm</code><code translate="no" class="p">,</code> <code translate="no" class="n">agent</code><code translate="no" class="o">=</code><code translate="no" class="n">AgentType</code><code translate="no" class="o">.</code><code translate="no" class="n">ZERO_SHOT_REACT_DESCRIPTION</code><code translate="no" class="p">,</code> <code translate="no" class="n">verbose</code><code translate="no" class="o">=</code><code translate="no" class="kc">True</code>
+  <code translate="no" class="p">)</code>
+  <code translate="no" class="n">question</code> <code translate="no" class="o">=</code> <code translate="no" class="s2">"""What is the square root of the population of the capital of the</code>
+  <code translate="no" class="s2">Country where the Olympic Games were held in 2016?"""</code>
+  <code translate="no" class="n">agent</code><code translate="no" class="o">.</code><code translate="no" class="n">run</code><code translate="no" class="p">(</code><code translate="no" class="n">question</code><code translate="no" class="p">)</code></pre>
+            
+            <div data-type="note" epub:type="note"><h6>Note</h6>
+              <p>To run the Wikipedia tool, it is necessary<a contenteditable="false" data-type="indexterm" data-primary="Python" data-secondary="wikipedia package" id="id1111"></a><a contenteditable="false" data-type="indexterm" data-primary="pip" data-secondary="installing wikipedia Python package" id="id1112"></a><a contenteditable="false" data-type="indexterm" data-primary="Wikipedia tool use" data-secondary="installing wikipedia Python package" id="id1113"></a> to have installed the corresponding Python package <code translate="no">wikipedia</code>. This can be done with <code translate="no">pip install wikipedia</code>.</p>
+            </div>
+            <p>As you can see, the agent decides to query Wikipedia for information about the 2016 Summer Olympics:</p>
+           
+              <pre translate="no" data-type="programlisting">&gt; Entering new chain...
+  I need to find the country where the Olympic Games were held in 2016 and then find
+  the population of its capital city. Then I can take the square root of that population.
+  Action: Wikipedia
+  Action Input: "2016 Summer Olympics"
+  Observation: Page: 2016 Summer Olympics
+  [...]</pre>
+            
+            <p>The next lines of the output contain an extract from Wikipedia about the Olympics. Next, the agent uses the Wikipedia tool two additional times:</p>
+          
+              <pre translate="no" data-type="programlisting">Thought:I need to search for the capital city of Brazil.
+  Action: Wikipedia
+  Action Input: "Capital of Brazil"
+  Observation: Page: Capitals of Brazil
+  Summary: The current capital of Brazil, since its construction in 1960, is
+  Brasilia. [...]
+  Thought: I have found the capital city of Brazil, which is Brasilia. Now I need 
+  to find the population of Brasilia.
+  Action: Wikipedia
+  Action Input: "Population of Brasilia"
+  Observation: Page: Brasilia
+  [...]</pre>
+          
+            <p>As a next step, the agent uses the calculator tool:</p>
+           
+              <pre translate="no" data-type="programlisting">Thought: I have found the population of Brasilia, but I need to calculate the
+  square root of that population.
+  Action: Calculator
+  Action Input: Square root of the population of Brasilia (population: found in 
+  previous observation)
+  Observation: Answer: 1587.051038876822</pre>
+            
+            <p>And finally:</p>
+          
+              <pre translate="no" data-type="programlisting">Thought:I now know the final answer
+  Final Answer: The square root of the population of the capital of the country
+  where the Olympic Games were held in 2016 is approximately 1587.
+  &gt; Finished chain.</pre>
+            
+            <p>As you can see, the agent demonstrated complex reasoning capabilities: it completed four different steps before coming up with the final answer. The LangChain framework allows developers to implement these kinds of reasoning capabilities in just a few lines of code.</p>
+            <div data-type="tip"><h6>Tip</h6>
+              <p>Although several LLMs can be used<a contenteditable="false" data-type="indexterm" data-primary="GPT-4 (OpenAI)" data-secondary="agents" id="id1114"></a><a contenteditable="false" data-type="indexterm" data-primary="agents and tools of LangChain framework" data-secondary="GPT-4 most expensive and best LLM" id="id1115"></a><a contenteditable="false" data-type="indexterm" data-primary="tools and agents of LangChain framework" data-secondary="GPT-4 most expensive and best LLM" id="id1116"></a><a contenteditable="false" data-type="indexterm" data-primary="pricing OpenAI models" data-secondary="GPT-4 for agents" id="id1117"></a> for the agent and GPT-4 is the most expensive among them, we have empirically obtained better results with GPT-4 for complex problems; we have observed that the results could quickly become inconsistent when smaller models are used for the agent’s reasoning. You may also receive errors because the model cannot answer in the expected format.<a contenteditable="false" data-type="indexterm" data-primary="" data-startref="ch05ant" id="id1118"></a><a contenteditable="false" data-type="indexterm" data-primary="" data-startref="ch05ant2" id="id1119"></a><a contenteditable="false" data-type="indexterm" data-primary="" data-startref="ch05ant3" id="id1120"></a><a contenteditable="false" data-type="indexterm" data-primary="" data-startref="ch05agpn" id="id1121"></a><a contenteditable="false" data-type="indexterm" data-primary="" data-startref="ch05agpn2" id="id1122"></a><a contenteditable="false" data-type="indexterm" data-primary="" data-startref="ch05agpn3" id="id1123"></a><a contenteditable="false" data-type="indexterm" data-primary="" data-startref="ch05agpn4" id="id1124"></a><a contenteditable="false" data-type="indexterm" data-primary="" data-startref="ch05-at35" id="id1125"></a><a contenteditable="false" data-type="indexterm" data-primary="" data-startref="ch05-at352" id="id1126"></a><a contenteditable="false" data-type="indexterm" data-primary="" data-startref="ch05-at353" id="id1127"></a><a contenteditable="false" data-type="indexterm" data-primary="" data-startref="ch05-at354" id="id1128"></a><a contenteditable="false" data-type="indexterm" data-primary="" data-startref="ch05-at355" id="id1129"></a><a contenteditable="false" data-type="indexterm" data-primary="" data-startref="ch05-lt" id="id1130"></a></p>
+            </div>
+          </div></section>
+          <section data-type="sect2" data-pdf-bookmark="Memory"><div class="sect2" id="memory_idKsxZI5">
+            <h2>Memory</h2>
+            <p>In some applications, it is crucial<a contenteditable="false" data-type="indexterm" data-primary="LangChain framework" data-secondary="memory" id="id1131"></a><a contenteditable="false" data-type="indexterm" data-primary="Memory module of LangChain" id="id1132"></a><a contenteditable="false" data-type="indexterm" data-primary="states added to chains and agents via LangChain" id="id1133"></a><a contenteditable="false" data-type="indexterm" data-primary="agents and tools of LangChain framework" data-secondary="memory" id="id1134"></a><a contenteditable="false" data-type="indexterm" data-primary="tools and agents of LangChain framework" data-secondary="memory" id="id1135"></a><a contenteditable="false" data-type="indexterm" data-primary="chatbot" id="id1136"></a><a contenteditable="false" data-type="indexterm" data-primary="ConversationChain for chatbot" id="id1137"></a><a contenteditable="false" data-type="indexterm" data-primary="text completion" data-secondary="chatbot" id="id1138"></a> to remember previous interactions, both in the short and long terms. With LangChain, you can easily add states to chains and agents to manage memory. Building a chatbot is the most common example of this capability. You can do this very quickly with <code translate="no">ConversationChain</code>—essentially turning a language model into a chat tool with just a few lines of code.</p>
+            <p>The following code uses the <code translate="no">text-ada-001</code> model to make a chatbot. It is a small model capable of performing only elementary tasks. However, it is the fastest model in the GPT-3 series and has the lowest cost. This model has never been fine-tuned to behave like a chatbot, but we can see that with only two lines of code with LangChain, we can use this simple completion model to chat: </p>
+            
+              <pre translate="no" data-type="programlisting" data-code-language="python"><code translate="no" class="kn">from</code> <code translate="no" class="nn">langchain</code> <code translate="no" class="kn">import</code> <code translate="no" class="n">OpenAI</code><code translate="no" class="p">,</code> <code translate="no" class="n">ConversationChain</code>
+  <code translate="no" class="n">chatbot_llm</code> <code translate="no" class="o">=</code> <code translate="no" class="n">OpenAI</code><code translate="no" class="p">(</code><code translate="no" class="n">model_name</code><code translate="no" class="o">=</code><code translate="no" class="s1">'text-ada-001'</code><code translate="no" class="p">)</code>
+  <code translate="no" class="n">chatbot</code> <code translate="no" class="o">=</code> <code translate="no" class="n">ConversationChain</code><code translate="no" class="p">(</code><code translate="no" class="n">llm</code><code translate="no" class="o">=</code><code translate="no" class="n">chatbot_llm</code> <code translate="no" class="p">,</code> <code translate="no" class="n">verbose</code><code translate="no" class="o">=</code><code translate="no" class="kc">True</code><code translate="no" class="p">)</code>
+  <code translate="no" class="n">chatbot</code><code translate="no" class="o">.</code><code translate="no" class="n">predict</code><code translate="no" class="p">(</code><code translate="no" class="nb">input</code><code translate="no" class="o">=</code><code translate="no" class="s1">'Hello'</code><code translate="no" class="p">)</code></pre>
+           
+            <p>In the last line of the preceding code, we executed <code translate="no">predict(input='Hello')</code>. This results in the chatbot being asked to respond to our <code translate="no">'Hello'</code> message. And as you can see, the model answers:</p>
+            
+              <pre translate="no" data-type="programlisting">&gt; Entering new ConversationChain chain...
+  Prompt after formatting:
+  The following is a friendly conversation between a human and an AI. The AI is
+  talkative and provides lots of specific details from its context. If the AI
+  does not know the answer to a question, it truthfully says it does not know.
+  Current conversation:
+  Human: Hello
+  AI:
+  &gt; Finished chain.
+  ' Hello! How can I help you?'</pre>
+            
+            <p>Thanks to <code translate="no">verbose=True</code> in <code translate="no">ConversationChain</code>, we can look at the whole prompt used by LangChain. When we executed <code translate="no">predict(input='Hello')</code>, the LLM <code translate="no">text-ada-001</code> received not simply the <code translate="no">'Hello'</code> message but a complete prompt, which is between the tags <code translate="no">&gt; Entering new ConversationChain chain…</code> and <code translate="no">&gt; Finished chain</code>. </p>
+            <p>If we continue the conversation, you can see that the function keeps a conversation history in the prompt. If we then ask “Can I ask you a question? Are you an AI?” the history of the conversation will also be in the prompt:</p>
+          
+              <pre translate="no" data-type="programlisting">&gt; Entering new ConversationChain chain...
+  Prompt after formatting:
+  The following [...] does not know.
+  Current conversation:
+  Human: Hello
+  AI:  Hello! How can I help you?
+  Human: Can I ask you a question? Are you an AI?
+  AI:
+  &gt; Finished chain.
+  '\n\nYes, I am an AI.'</pre>
+         
+            <p>The <code translate="no">ConversationChain</code> object uses prompt engineering techniques and memory techniques to transform any LLM that does text completion into a chat tool.</p>
+            <div data-type="warning" epub:type="warning"><h6>Warning</h6>
+              <p>Even if this LangChain feature allows all the language models to have chat capabilities, this solution is not as powerful as models like <code translate="no">gpt-3.5-turbo</code> and <code translate="no">gpt-4</code>, which have been fine-tuned specifically for chat. Furthermore, OpenAI has announced the deprecation of <code translate="no">text-ada-001</code>.</p>
+            </div>
+          </div></section>
+          <section data-type="sect2" data-pdf-bookmark="Embeddings"><div class="sect2" id="embeddings">
+            <h2>Embeddings</h2>
+            <p>Combining language models with your<a contenteditable="false" data-type="indexterm" data-primary="LangChain framework" data-secondary="embeddings" id="ch05mbed"></a><a contenteditable="false" data-type="indexterm" data-primary="embeddings" data-secondary="LangChain framework" id="ch05mbed2"></a><a contenteditable="false" data-type="indexterm" data-primary="information retrieval" data-secondary="embeddings" id="ch05mbed3"></a><a contenteditable="false" data-type="indexterm" data-primary="embeddings" data-secondary="about" id="id1139"></a> own text data is a powerful way to personalize the knowledge of the models you use in your apps. The principle is the same as that discussed in <a data-type="xref" href="ch03.html#building_apps_with_gpt_4_and_chatgpt">Chapter&nbsp;3</a>: the first step is <em>information retrieval</em>, which refers to taking a user’s query and returning the most relevant documents. The documents are then sent to the model’s input context to ask it to answer the query. This section shows how easy it is to do this with LangChain and embeddings.</p>
+            <p class="pagebreak-before less_space">An essential module in LangChain<a contenteditable="false" data-type="indexterm" data-primary="document_loaders module in LangChain" id="ch05-doclo"></a><a contenteditable="false" data-type="indexterm" data-primary="LangChain framework" data-secondary="modules" data-tertiary="document_loaders module" id="id1140"></a><a contenteditable="false" data-type="indexterm" data-primary="Zelda video game expert project" data-secondary="PDF document content into FAISS" id="ch05-pdf"></a><a contenteditable="false" data-type="indexterm" data-primary="expert on Zelda video game project" data-secondary="PDF document content into FAISS" id="ch05-pdf2"></a> is <code translate="no">document_loaders</code>. With this module, you can quickly load your text data from different sources into your application. For example, your application can load CSV files, emails, PowerPoint documents, Evernote notes, Facebook chats, HTML pages, PDF documents, and many other formats. <a contenteditable="false" data-type="indexterm" data-primary="document_loaders module in LangChain" data-secondary="documentation link" id="id1141"></a><a contenteditable="false" data-type="indexterm" data-primary="document_loaders module in LangChain" data-secondary="list of loaders link" id="id1142"></a><a contenteditable="false" data-type="indexterm" data-primary="resources online" data-secondary="LangChain" data-tertiary="document_loaders module list of loaders" id="id1143"></a><a contenteditable="false" data-type="indexterm" data-primary="resources online" data-secondary="LangChain" data-tertiary="documentation" id="id1144"></a>A complete list of loaders is available <a href="https://oreil.ly/t7nZx">in the official documentation</a>. Each of them is super easy to set. <a contenteditable="false" data-type="indexterm" data-primary="expert on Zelda video game project" data-secondary="embeddings in LangChain framework" id="id1145"></a><a contenteditable="false" data-type="indexterm" data-primary="Zelda video game expert project" data-secondary="embeddings in LangChain framework" id="id1146"></a><a contenteditable="false" data-type="indexterm" data-primary="datasets" data-secondary="Zelda Explorer's Guide" id="id1147"></a>This example reuses the PDF of the <a href="https://oreil.ly/ZGu3z"><em>Explorer’s Guide for The Legend of Zelda: Breath of the Wild</em></a>.</p>
+            <p>If the PDF is in the current working directory, the following code loads its contents and divides it by page:</p>
+            
+              <pre translate="no" data-type="programlisting" data-code-language="python"><code translate="no" class="kn">from</code> <code translate="no" class="nn">langchain.document_loaders</code> <code translate="no" class="kn">import</code> <code translate="no" class="n">PyPDFLoader</code>
+  <code translate="no" class="n">loader</code> <code translate="no" class="o">=</code> <code translate="no" class="n">PyPDFLoader</code><code translate="no" class="p">(</code><code translate="no" class="s2">"ExplorersGuide.pdf"</code><code translate="no" class="p">)</code>
+  <code translate="no" class="n">pages</code> <code translate="no" class="o">=</code> <code translate="no" class="n">loader</code><code translate="no" class="o">.</code><code translate="no" class="n">load_and_split</code><code translate="no" class="p">()</code></pre>
+           
+            <div data-type="note" epub:type="note"><h6>Note</h6>
+              <p>To use the PDF loader, it is necessary<a contenteditable="false" data-type="indexterm" data-primary="document_loaders module in LangChain" data-secondary="PDF loader requiring Python pypdf" id="id1148"></a><a contenteditable="false" data-type="indexterm" data-primary="PDF loader in document_loaders" id="id1149"></a><a contenteditable="false" data-type="indexterm" data-primary="pypdf required for PDF loader in document_loaders" id="id1150"></a><a contenteditable="false" data-type="indexterm" data-primary="Python" data-secondary="pypdf required for PDF loader in document_loaders" id="id1151"></a><a contenteditable="false" data-type="indexterm" data-primary="pip" data-secondary="installing pypdf Python package" id="id1152"></a> to have the Python <code translate="no">pypdf</code> package installed. This can be done with <code translate="no">pip install pypdf</code>.</p>
+            </div>
+            <p>To do information retrieval, it is necessary to embed each loaded page. As we discussed in <a data-type="xref" href="ch02.html#a_deep_dive_into_the_gpt_4_and_chatgpt_apis">Chapter&nbsp;2</a>, <em>embeddings</em> are a technique used in information retrieval to convert non-numerical concepts, such as words, tokens, and sentences, into numerical vectors. The embeddings allow models to process relationships between these concepts efficiently. With OpenAI’s embeddings endpoint, developers can obtain numerical vector representations of input text, and LangChain has a wrapper to call these embeddings:<a contenteditable="false" data-type="indexterm" data-primary="OpenAIEmbeddings of LangChain" id="id1153"></a></p>
+           
+              <pre translate="no" data-type="programlisting" data-code-language="python"><code translate="no" class="kn">from</code> <code translate="no" class="nn">langchain.embeddings</code> <code translate="no" class="kn">import</code> <code translate="no" class="n">OpenAIEmbeddings</code>
+  <code translate="no" class="n">embeddings</code> <code translate="no" class="o">=</code> <code translate="no" class="n">OpenAIEmbeddings</code><code translate="no" class="p">()</code></pre>
+            
+            <div data-type="note" epub:type="note"><h6>Note</h6>
+              <p>To use <code translate="no">OpenAIEmbeddings</code>, install the <code translate="no">tiktoken</code> Python package with <code translate="no">pip install tiktoken</code>.<a contenteditable="false" data-type="indexterm" data-primary="tiktoken package" data-secondary="embeddings" id="id1154"></a><a contenteditable="false" data-type="indexterm" data-primary="pip" data-secondary="installing tiktoken Python package" id="id1155"></a><a contenteditable="false" data-type="indexterm" data-primary="tiktoken package" data-secondary="installing" id="id1156"></a></p>
+            </div>
+            <p>Indexes save pages’ embeddings and make searches easy. <a contenteditable="false" data-type="indexterm" data-primary="LangChain framework" data-secondary="embeddings" data-tertiary="vector databases" id="id1157"></a><a contenteditable="false" data-type="indexterm" data-primary="vector databases" data-secondary="for LangChain" data-secondary-sortas="LangChain" id="id1158"></a><a contenteditable="false" data-type="indexterm" data-primary="resources online" data-secondary="LangChain" data-tertiary="vector databases for" id="id1159"></a>LangChain is centered on vector databases. It is possible to choose among many vector databases; a complete list is available <a href="https://oreil.ly/nJLCI">in the official documentation</a>. <a contenteditable="false" data-type="indexterm" data-primary="FAISS library for similarity search" id="id1160"></a><a contenteditable="false" data-type="indexterm" data-primary="Meta Fundamental AI Research" id="id1161"></a><a contenteditable="false" data-type="indexterm" data-primary="similarity search data structures" data-secondary="FAISS" id="id1162"></a><a contenteditable="false" data-type="indexterm" data-primary="vector databases" data-secondary="FAISS" id="id1163"></a>The following code snippet uses the <a href="https://oreil.ly/7TMdI">FAISS vector database</a>, a library for similarity search developed primarily at Meta’s <a href="https://ai.facebook.com">Fundamental AI Research group</a>:</p>
+         
+              <pre translate="no" data-type="programlisting" class="pagebreak-before less_space" data-code-language="python"><code translate="no" class="kn">from</code> <code translate="no" class="nn">langchain.vectorstores</code> <code translate="no" class="kn">import</code> <code translate="no" class="n">FAISS</code>
+  <code translate="no" class="n">db</code> <code translate="no" class="o">=</code> <code translate="no" class="n">FAISS</code><code translate="no" class="o">.</code><code translate="no" class="n">from_documents</code><code translate="no" class="p">(</code><code translate="no" class="n">pages</code><code translate="no" class="p">,</code> <code translate="no" class="n">embeddings</code><code translate="no" class="p">)</code></pre>
+          
+            <div data-type="note" epub:type="note"><h6>Note</h6>
+              <p>To use FAISS, it is necessary<a contenteditable="false" data-type="indexterm" data-primary="FAISS library for similarity search" data-secondary="faiss-cpu package required" id="id1164"></a><a contenteditable="false" data-type="indexterm" data-primary="faiss-cpu Python package for FAISS" id="id1165"></a><a contenteditable="false" data-type="indexterm" data-primary="pip" data-secondary="installing FAISS vector database" id="id1166"></a> to install the <code translate="no">faiss-cpu</code> Python package with <code translate="no">pip install faiss-cpu</code>.</p>
+            </div>
+            <p>To better illustrate how the PDF document’s content is converted into pages of embeddings and stored in the FAISS vector database, <a data-type="xref" href="#fig_3_creating_and_saving_embeddings_from_a_pdf_document">Figure&nbsp;5-3</a> visually summarizes the process.</p>
+            <figure><div id="fig_3_creating_and_saving_embeddings_from_a_pdf_document" class="figure">
+              <img src="/api/v2/epubs/urn:orm:book:9781098152475/files/assets/dagc_0503.png" alt="" width="600" height="153">
+              <h6><span class="label">Figure 5-3. </span>Creating and saving embeddings from a PDF document</h6>
+            </div></figure>
+            <p>And now it’s easy to search for similarities:<a contenteditable="false" data-type="indexterm" data-primary="" data-startref="ch05-pdf" id="id1167"></a><a contenteditable="false" data-type="indexterm" data-primary="" data-startref="ch05-pdf2" id="id1168"></a></p>
+           
+              <pre translate="no" data-type="programlisting" data-code-language="python"><code translate="no" class="n">q</code> <code translate="no" class="o">=</code> <code translate="no" class="s2">"What is Link's traditional outfit color?"</code>
+  <code translate="no" class="n">db</code><code translate="no" class="o">.</code><code translate="no" class="n">similarity_search</code><code translate="no" class="p">(</code><code translate="no" class="n">q</code><code translate="no" class="p">)[</code><code translate="no" class="mi">0</code><code translate="no" class="p">]</code></pre>
+            
+            <p>From the preceding code, we get the following:</p>
+           
+              <pre translate="no" data-type="programlisting" data-code-language="python"><code translate="no" class="n">Document</code><code translate="no" class="p">(</code><code translate="no" class="n">page_content</code><code translate="no" class="o">=</code><code translate="no" class="s1">'While Link’s traditional green </code><code translate="no" class="w"></code>
+                <code translate="no" class="n">tunic</code> <code translate="no" class="ow">is</code> <code translate="no" class="n">certainly</code> <code translate="no" class="n">an</code> <code translate="no" class="n">iconic</code> <code translate="no" class="n">look</code><code translate="no" class="p">,</code> <code translate="no" class="n">his</code> 
+                <code translate="no" class="n">wardrobe</code> <code translate="no" class="n">has</code> <code translate="no" class="n">expanded</code> <code translate="no" class="p">[</code><code translate="no" class="o">...</code><code translate="no" class="p">]</code> <code translate="no" class="n">Dress</code> <code translate="no" class="k">for</code> <code translate="no" class="n">Success</code><code translate="no" class="s1">', </code><code translate="no" class="w"></code>
+            <code translate="no" class="n">metadata</code><code translate="no" class="o">=</code><code translate="no" class="p">{</code><code translate="no" class="s1">'source'</code><code translate="no" class="p">:</code> <code translate="no" class="s1">'ExplorersGuide.pdf'</code><code translate="no" class="p">,</code> <code translate="no" class="s1">'page'</code><code translate="no" class="p">:</code> <code translate="no" class="mi">35</code><code translate="no" class="p">})</code>   </pre>
+           
+            <p>The answer to the question is that Link’s traditional outfit color is green, and we can see that the answer is in the selected content. The output says that the answer is on page 35 of <em>ExplorersGuide.pdf</em>. Remember that Python starts to count from zero; therefore, if you return to the original PDF file of the <em>Explorer’s Guide for The Legend of Zelda: Breath of the Wild</em>, the solution is on page 36 (not page 35).</p>
+            <p><a data-type="xref" href="#fig_4_the_information_retrieval_looks_for_pages_most_sim">Figure&nbsp;5-4</a> shows how the information retrieval process uses the embedding of the query and the vector database to identify the pages most similar to the query. </p>
+            <figure><div id="fig_4_the_information_retrieval_looks_for_pages_most_sim" class="figure">
+              <img src="/api/v2/epubs/urn:orm:book:9781098152475/files/assets/dagc_0504.png" alt="" width="600" height="165">
+              <h6><span class="label">Figure 5-4. </span>The information retrieval looks for pages most similar to the query</h6>
+            </div></figure>
+            <p>You might want to integrate your embedding<a contenteditable="false" data-type="indexterm" data-primary="chatbot" data-secondary="embedding integrated into" id="id1169"></a><a contenteditable="false" data-type="indexterm" data-primary="embeddings" data-secondary="LangChain framework" data-tertiary="chatbot integration" id="id1170"></a><a contenteditable="false" data-type="indexterm" data-primary="LangChain framework" data-secondary="embeddings" data-tertiary="chatbot integration" id="id1171"></a> into your chatbot to use the information it has retrieved when it answers your questions. Again, with LangChain, this is straightforward to do in a few lines of code. We use <code translate="no">RetrievalQA</code>, which takes as inputs an LLM and a vector database. We then ask a question to the obtained object in the usual way:</p>
+           
+              <pre translate="no" data-type="programlisting" data-code-language="python"><code translate="no" class="kn">from</code> <code translate="no" class="nn">langchain.chains</code> <code translate="no" class="kn">import</code> <code translate="no" class="n">RetrievalQA</code>
+  <code translate="no" class="kn">from</code> <code translate="no" class="nn">langchain</code> <code translate="no" class="kn">import</code> <code translate="no" class="n">OpenAI</code>
+  <code translate="no" class="n">llm</code> <code translate="no" class="o">=</code> <code translate="no" class="n">OpenAI</code><code translate="no" class="p">()</code>
+  <code translate="no" class="n">chain</code> <code translate="no" class="o">=</code> <code translate="no" class="n">RetrievalQA</code><code translate="no" class="o">.</code><code translate="no" class="n">from_llm</code><code translate="no" class="p">(</code><code translate="no" class="n">llm</code><code translate="no" class="o">=</code><code translate="no" class="n">llm</code><code translate="no" class="p">,</code> <code translate="no" class="n">retriever</code><code translate="no" class="o">=</code><code translate="no" class="n">db</code><code translate="no" class="o">.</code><code translate="no" class="n">as_retriever</code><code translate="no" class="p">())</code>
+  <code translate="no" class="n">q</code> <code translate="no" class="o">=</code> <code translate="no" class="s2">"What is Link's traditional outfit color?"</code>
+  <code translate="no" class="n">chain</code><code translate="no" class="p">(</code><code translate="no" class="n">q</code><code translate="no" class="p">,</code> <code translate="no" class="n">return_only_outputs</code><code translate="no" class="o">=</code><code translate="no" class="kc">True</code><code translate="no" class="p">)</code></pre>
+          
+            <p>We get the following answer:</p>
+            
+              <pre translate="no" data-type="programlisting" data-code-language="python"><code translate="no" class="p">{</code><code translate="no" class="s1">'result'</code><code translate="no" class="p">:</code> <code translate="no" class="s2">" Link's traditional outfit color is green."</code><code translate="no" class="p">}</code></pre>
+           
+            <p><a data-type="xref" href="#fig_5_to_answer_the_user_s_question_the_retrieved_infor">Figure&nbsp;5-5</a> shows how <code translate="no">RetrievalQA</code> uses information retrieval to answer the user’s question. As we can see in this figure, “Make context” groups together the pages found by the information retrieval system and the user’s initial query. This enriched context is then sent to the language model, which can use the additional information added in the context to correctly answer the user’s question.</p>
+            <figure><div id="fig_5_to_answer_the_user_s_question_the_retrieved_infor" class="figure">
+              <img src="/api/v2/epubs/urn:orm:book:9781098152475/files/assets/dagc_0505.png" alt="" width="600" height="149">
+              <h6><span class="label">Figure 5-5. </span>To answer the user’s question, the retrieved information is added to the context of the LLM</h6>
+            </div></figure>
+            <p class="pagebreak-before less_space">You may wonder why it is necessary<a contenteditable="false" data-type="indexterm" data-primary="information retrieval" data-secondary="why necessary" id="id1172"></a><a contenteditable="false" data-type="indexterm" data-primary="embeddings" data-secondary="why information retrieval necessary" id="id1173"></a> to do the information retrieval before sending the information from the document as input to the context of the language model. Indeed, current language models cannot consider large files with hundreds of pages. Therefore, we prefilter the input data if it is too large. This is the task of the information retrieval process. In the near future, as the size of input contexts increases, there will likely be situations for which the use of information retrieval techniques will not be technically necessary.<a contenteditable="false" data-type="indexterm" data-primary="" data-startref="ch05mbed" id="id1174"></a><a contenteditable="false" data-type="indexterm" data-primary="" data-startref="ch05mbed2" id="id1175"></a><a contenteditable="false" data-type="indexterm" data-primary="" data-startref="ch05mbed3" id="id1176"></a><a contenteditable="false" data-type="indexterm" data-primary="" data-startref="ch05-doclo" id="id1177"></a></p>
+          </div></section>
+        </div></section>
+        <section data-type="sect1" data-pdf-bookmark="GPT-4 Plug-ins "><div class="sect1" id="gpt_4_plug_ins">
+          <h1>GPT-4 Plug-ins </h1>
+          <p>While language models, including GPT-4, <a contenteditable="false" data-type="indexterm" data-primary="plug-ins of GPT-4" data-secondary="about" id="ch05-pluab"></a><a contenteditable="false" data-type="indexterm" data-primary="plug-ins of GPT-4" data-secondary="creating a plug-in" data-tertiary="about plug-ins" id="ch05-pluab2"></a><a contenteditable="false" data-type="indexterm" data-primary="to-do list plug-in created" data-secondary="about plug-ins" id="ch05-pluab3"></a>have proven helpful in various tasks, they have inherent limitations. For example, these models can only learn from the data on which they were trained, which is often outdated or inappropriate for specific applications. In addition, their capabilities are limited to text generation. We have also seen that LLMs do not work for some tasks, such as complex calculations.</p>
+          <p>This section focuses on a <a contenteditable="false" data-type="indexterm" data-primary="plug-ins of GPT-4" data-secondary="GPT-4 capability" id="id1178"></a><a contenteditable="false" data-type="indexterm" data-primary="GPT-4 (OpenAI)" data-secondary="plug-ins added" data-seealso="plug-ins of GPT-4" id="id1179"></a><a contenteditable="false" data-type="indexterm" data-primary="GPT models" data-secondary="plug-ins of GPT-4" data-seealso="plug-ins of GPT-4" id="id1180"></a><a contenteditable="false" data-type="indexterm" data-primary="GPT-3.5 (OpenAI)" data-secondary="plug-ins not available" id="id1181"></a>groundbreaking feature of GPT-4: plug-ins (note that the GPT-3.5 model doesn’t have access to plug-in functionality). In the evolution of AI, plug-ins have emerged as a new transformative tool that redefines interaction with LLMs. The goal of plug-ins is to provide the LLM with broader capabilities, allowing the model to access real-time information, perform complex mathematical computations, and utilize third-party services.</p>
+          <p>We saw in <a data-type="xref" href="ch01.html#gpt_4_and_chatgpt_essentials">Chapter&nbsp;1</a> that the model<a contenteditable="false" data-type="indexterm" data-primary="plug-ins of GPT-4" data-secondary="calculator not installed by default" data-tertiary="calculator plug-in available" id="id1182"></a><a contenteditable="false" data-type="indexterm" data-primary="calculator not installed by default" data-secondary="calculator plug-in available" id="id1183"></a> was not capable of performing complex calculations such as 3,695 × 123,548. In <a data-type="xref" href="#fig_6_gpt_4_s_use_of_the_calculator_plug_in">Figure&nbsp;5-6</a>, we activate the Calculator plug-in and we can see that the model automatically calls the calculator when it needs to do a calculation, allowing it to find the right solution.</p>
+  
+          <p>With an iterative deployment approach, OpenAI incrementally adds plug-ins to GPT-4, which enables OpenAI to consider practical uses for plug-ins as well as any security and customization challenges that they may introduce. While plug-ins have been available to all paying users since May 2023, the ability to create new plug-ins was not yet available for all developers at the time of this writing. </p>
+          
+          <figure><div id="fig_6_gpt_4_s_use_of_the_calculator_plug_in" class="figure">
+            <img src="/api/v2/epubs/urn:orm:book:9781098152475/files/assets/dagc_0506.png" alt="" width="600" height="507">
+            <h6><span class="label">Figure 5-6. </span>GPT-4’s use of the Calculator plug-in </h6>
+          </div></figure>
+          <p>OpenAI’s goal is to create an ecosystem where plug-ins can help shape the future dynamics of human–AI interaction. Today it is inconceivable for a serious business not to have its own website, but maybe soon, every company will need to have its own plug-in. Indeed, several early plug-ins have already been brought to life by companies such as Expedia, FiscalNote, Instacart, KAYAK, Klarna, Milo, OpenTable, Shopify, and Zapier.</p>
+          <p>Beyond their primary function, plug-ins serve to extend the functionality of GPT-4 in several ways. In a sense, some similarities exist between plug-ins and the agents and tools discussed in <a data-type="xref" href="#the_langchain_framework">“The LangChain Framework”</a>. For example, plug-ins can enable an LLM to retrieve real-time information such as sports scores and stock prices, extract data from knowledge bases such as corporate documents, and perform tasks at the demand of users, such as booking a flight or ordering a meal. Both are designed to help AI access up-to-date information and perform calculations. However, the plug-ins in GPT-4 focus more on third-party services than LangChain’s tools.</p>
+          <p>This section introduces the fundamental<a contenteditable="false" data-type="indexterm" data-primary="plug-ins of GPT-4" data-secondary="creating a plug-in" data-tertiary="about" id="id1184"></a><a contenteditable="false" data-type="indexterm" data-primary="to-do list plug-in created" data-secondary="about creating a plug-in" id="id1185"></a> concepts for creating a plug-in by exploring the key points of the examples presented on the OpenAI website. We will use the example of a to-do list definition plug-in. <a contenteditable="false" data-type="indexterm" data-primary="plug-ins of GPT-4" data-secondary="about" data-tertiary="limited beta version" id="id1186"></a><a contenteditable="false" data-type="indexterm" data-primary="to-do list plug-in created" data-secondary="about plug-ins" data-tertiary="limited beta version" id="id1187"></a><a contenteditable="false" data-type="indexterm" data-primary="plug-ins of GPT-4" data-secondary="OpenAI reference page link" id="id1188"></a><a contenteditable="false" data-type="indexterm" data-primary="to-do list plug-in created" data-secondary="about plug-ins" data-tertiary="OpenAI reference page link" id="id1189"></a><a contenteditable="false" data-type="indexterm" data-primary="resources online" data-secondary="OpenAI" data-tertiary="plug-in reference page" id="id1190"></a>Plug-ins are still in a limited beta version as we write this book, so readers are encouraged to visit the <a href="https://platform.openai.com/docs/plugins/introduction">OpenAI reference page</a> for the latest information. Note also that during the beta phase, users must manually enable their plug-in in ChatGPT’s user interface, and as a developer, you can share your plug-in with no more than 100 users.<a contenteditable="false" data-type="indexterm" data-primary="" data-startref="ch05-pluab" id="id1191"></a><a contenteditable="false" data-type="indexterm" data-primary="" data-startref="ch05-pluab2" id="id1192"></a><a contenteditable="false" data-type="indexterm" data-primary="" data-startref="ch05-pluab3" id="id1193"></a> </p>
+          <section data-type="sect2" data-pdf-bookmark="Overview"><div class="sect2" id="overview_idKH9Vsl">
+            <h2>Overview</h2>
+            <p>As a plug-in developer, you must<a contenteditable="false" data-type="indexterm" data-primary="plug-ins of GPT-4" data-secondary="creating a plug-in" data-tertiary="overview" id="id1194"></a><a contenteditable="false" data-type="indexterm" data-primary="APIs (application programming interfaces)" data-secondary="plug-ins" data-tertiary="creating plug-ins" id="id1195"></a><a contenteditable="false" data-type="indexterm" data-primary="to-do list plug-in created" data-secondary="about creating a plug-in" data-tertiary="overview" id="id1196"></a> create an API and associate it with two descriptive files: a plug-in manifest and an OpenAPI specification. When the user starts interacting with GPT-4, OpenAI sends a hidden message to GPT if your plug-in is installed. This message briefly introduces your plug-in, including its description, endpoints, and examples.</p>
+            <p>The model then becomes an intelligent API caller. When a user asks questions about your plug-in, the model can call your plug-in API. The decision to call the plug-in is made based on the API specification and a natural language description of the circumstances in which your API should be used. <a contenteditable="false" data-type="indexterm" data-primary="plug-ins of GPT-4" data-secondary="about" data-tertiary="responses return raw data" id="id1197"></a><a contenteditable="false" data-type="indexterm" data-primary="to-do list plug-in created" data-secondary="about creating a plug-in" data-tertiary="responses return raw data" id="id1198"></a>Once the model has decided to call your plug-in, it incorporates the API results into its context to provide its response to the user. Therefore, the plug-in’s API responses must return raw data instead of natural language responses. This allows GPT to generate its own natural language response based on the returned data.</p>
+            <p>For example, if a user asks “Where should I stay in New York?”, the model can use a hotel booking plug-in and then combine the plug-in’s API response with its language generation capabilities to provide an answer that is both informative and user friendly.</p>
+          </div></section>
+          <section data-type="sect2" data-pdf-bookmark="The API"><div class="sect2" id="the_api_idT3JulO">
+            <h2>The API</h2>
+            <p>Here is a simplified version of<a contenteditable="false" data-type="indexterm" data-primary="plug-ins of GPT-4" data-secondary="API code" id="id1199"></a><a contenteditable="false" data-type="indexterm" data-primary="APIs (application programming interfaces)" data-secondary="plug-ins" data-tertiary="API code for creating" id="id1200"></a><a contenteditable="false" data-type="indexterm" data-primary="resources online" data-secondary="OpenAI" data-tertiary="plug-in API code for to-do list" id="id1201"></a><a contenteditable="false" data-type="indexterm" data-primary="plug-ins of GPT-4" data-secondary="creating a plug-in" data-tertiary="API code" id="id1202"></a><a contenteditable="false" data-type="indexterm" data-primary="to-do list plug-in created" data-secondary="API code" id="id1203"></a> the code example of the to-do list definition plug-in provided on<a href="https://oreil.ly/un13K"> OpenAI’s GitHub</a>:</p>
+         
+              <pre translate="no" data-type="programlisting" data-code-language="python"><code translate="no" class="kn">import</code> <code translate="no" class="nn">json</code>
+  <code translate="no" class="kn">import</code> <code translate="no" class="nn">quart</code>
+  <code translate="no" class="kn">import</code> <code translate="no" class="nn">quart_cors</code>
+  <code translate="no" class="kn">from</code> <code translate="no" class="nn">quart</code> <code translate="no" class="kn">import</code> <code translate="no" class="n">request</code>
+  <code translate="no" class="n">app</code> <code translate="no" class="o">=</code> <code translate="no" class="n">quart_cors</code><code translate="no" class="o">.</code><code translate="no" class="n">cors</code><code translate="no" class="p">(</code>
+      <code translate="no" class="n">quart</code><code translate="no" class="o">.</code><code translate="no" class="n">Quart</code><code translate="no" class="p">(</code><code translate="no" class="vm">__name__</code><code translate="no" class="p">),</code> <code translate="no" class="n">allow_origin</code><code translate="no" class="o">=</code><code translate="no" class="s2">"https://chat.openai.com"</code>
+  <code translate="no" class="p">)</code>
+  <code translate="no" class="c1"># Keep track of todo's. Does not persist if Python session is restarted.</code>
+  <code translate="no" class="n">_TODOS</code> <code translate="no" class="o">=</code> <code translate="no" class="p">{}</code>
+  <code translate="no" class="nd">@app</code><code translate="no" class="o">.</code><code translate="no" class="n">post</code><code translate="no" class="p">(</code><code translate="no" class="s2">"/todos/&lt;string:username&gt;"</code><code translate="no" class="p">)</code>
+  <code translate="no" class="k">async</code> <code translate="no" class="k">def</code> <code translate="no" class="nf">add_todo</code><code translate="no" class="p">(</code><code translate="no" class="n">username</code><code translate="no" class="p">):</code>
+      <code translate="no" class="n">request</code> <code translate="no" class="o">=</code> <code translate="no" class="k">await</code> <code translate="no" class="n">quart</code><code translate="no" class="o">.</code><code translate="no" class="n">request</code><code translate="no" class="o">.</code><code translate="no" class="n">get_json</code><code translate="no" class="p">(</code><code translate="no" class="n">force</code><code translate="no" class="o">=</code><code translate="no" class="kc">True</code><code translate="no" class="p">)</code>
+      <code translate="no" class="k">if</code> <code translate="no" class="n">username</code> <code translate="no" class="ow">not</code> <code translate="no" class="ow">in</code> <code translate="no" class="n">_TODOS</code><code translate="no" class="p">:</code>
+          <code translate="no" class="n">_TODOS</code><code translate="no" class="p">[</code><code translate="no" class="n">username</code><code translate="no" class="p">]</code> <code translate="no" class="o">=</code> <code translate="no" class="p">[]</code>
+      <code translate="no" class="n">_TODOS</code><code translate="no" class="p">[</code><code translate="no" class="n">username</code><code translate="no" class="p">]</code><code translate="no" class="o">.</code><code translate="no" class="n">append</code><code translate="no" class="p">(</code><code translate="no" class="n">request</code><code translate="no" class="p">[</code><code translate="no" class="s2">"todo"</code><code translate="no" class="p">])</code>
+      <code translate="no" class="k">return</code> <code translate="no" class="n">quart</code><code translate="no" class="o">.</code><code translate="no" class="n">Response</code><code translate="no" class="p">(</code><code translate="no" class="n">response</code><code translate="no" class="o">=</code><code translate="no" class="s2">"OK"</code><code translate="no" class="p">,</code> <code translate="no" class="n">status</code><code translate="no" class="o">=</code><code translate="no" class="mi">200</code><code translate="no" class="p">)</code>
+  <code translate="no" class="nd">@app</code><code translate="no" class="o">.</code><code translate="no" class="n">get</code><code translate="no" class="p">(</code><code translate="no" class="s2">"/todos/&lt;string:username&gt;"</code><code translate="no" class="p">)</code>
+  <code translate="no" class="k">async</code> <code translate="no" class="k">def</code> <code translate="no" class="nf">get_todos</code><code translate="no" class="p">(</code><code translate="no" class="n">username</code><code translate="no" class="p">):</code>
+      <code translate="no" class="k">return</code> <code translate="no" class="n">quart</code><code translate="no" class="o">.</code><code translate="no" class="n">Response</code><code translate="no" class="p">(</code>
+          <code translate="no" class="n">response</code><code translate="no" class="o">=</code><code translate="no" class="n">json</code><code translate="no" class="o">.</code><code translate="no" class="n">dumps</code><code translate="no" class="p">(</code><code translate="no" class="n">_TODOS</code><code translate="no" class="o">.</code><code translate="no" class="n">get</code><code translate="no" class="p">(</code><code translate="no" class="n">username</code><code translate="no" class="p">,</code> <code translate="no" class="p">[])),</code> <code translate="no" class="n">status</code><code translate="no" class="o">=</code><code translate="no" class="mi">200</code>
+      <code translate="no" class="p">)</code>
+  <code translate="no" class="nd">@app</code><code translate="no" class="o">.</code><code translate="no" class="n">get</code><code translate="no" class="p">(</code><code translate="no" class="s2">"/.well-known/ai-plugin.json"</code><code translate="no" class="p">)</code>
+  <code translate="no" class="k">async</code> <code translate="no" class="k">def</code> <code translate="no" class="nf">plugin_manifest</code><code translate="no" class="p">():</code>
+      <code translate="no" class="n">host</code> <code translate="no" class="o">=</code> <code translate="no" class="n">request</code><code translate="no" class="o">.</code><code translate="no" class="n">headers</code><code translate="no" class="p">[</code><code translate="no" class="s2">"Host"</code><code translate="no" class="p">]</code>
+      <code translate="no" class="k">with</code> <code translate="no" class="nb">open</code><code translate="no" class="p">(</code><code translate="no" class="s2">"./.well-known/ai-plugin.json"</code><code translate="no" class="p">)</code> <code translate="no" class="k">as</code> <code translate="no" class="n">f</code><code translate="no" class="p">:</code>
+          <code translate="no" class="n">text</code> <code translate="no" class="o">=</code> <code translate="no" class="n">f</code><code translate="no" class="o">.</code><code translate="no" class="n">read</code><code translate="no" class="p">()</code>
+          <code translate="no" class="k">return</code> <code translate="no" class="n">quart</code><code translate="no" class="o">.</code><code translate="no" class="n">Response</code><code translate="no" class="p">(</code><code translate="no" class="n">text</code><code translate="no" class="p">,</code> <code translate="no" class="n">mimetype</code><code translate="no" class="o">=</code><code translate="no" class="s2">"text/json"</code><code translate="no" class="p">)</code>
+  <code translate="no" class="nd">@app</code><code translate="no" class="o">.</code><code translate="no" class="n">get</code><code translate="no" class="p">(</code><code translate="no" class="s2">"/openapi.yaml"</code><code translate="no" class="p">)</code>
+  <code translate="no" class="k">async</code> <code translate="no" class="k">def</code> <code translate="no" class="nf">openapi_spec</code><code translate="no" class="p">():</code>
+      <code translate="no" class="n">host</code> <code translate="no" class="o">=</code> <code translate="no" class="n">request</code><code translate="no" class="o">.</code><code translate="no" class="n">headers</code><code translate="no" class="p">[</code><code translate="no" class="s2">"Host"</code><code translate="no" class="p">]</code>
+      <code translate="no" class="k">with</code> <code translate="no" class="nb">open</code><code translate="no" class="p">(</code><code translate="no" class="s2">"openapi.yaml"</code><code translate="no" class="p">)</code> <code translate="no" class="k">as</code> <code translate="no" class="n">f</code><code translate="no" class="p">:</code>
+          <code translate="no" class="n">text</code> <code translate="no" class="o">=</code> <code translate="no" class="n">f</code><code translate="no" class="o">.</code><code translate="no" class="n">read</code><code translate="no" class="p">()</code>
+          <code translate="no" class="k">return</code> <code translate="no" class="n">quart</code><code translate="no" class="o">.</code><code translate="no" class="n">Response</code><code translate="no" class="p">(</code><code translate="no" class="n">text</code><code translate="no" class="p">,</code> <code translate="no" class="n">mimetype</code><code translate="no" class="o">=</code><code translate="no" class="s2">"text/yaml"</code><code translate="no" class="p">)</code>
+  <code translate="no" class="k">def</code> <code translate="no" class="nf">main</code><code translate="no" class="p">():</code>
+      <code translate="no" class="n">app</code><code translate="no" class="o">.</code><code translate="no" class="n">run</code><code translate="no" class="p">(</code><code translate="no" class="n">debug</code><code translate="no" class="o">=</code><code translate="no" class="kc">True</code><code translate="no" class="p">,</code> <code translate="no" class="n">host</code><code translate="no" class="o">=</code><code translate="no" class="s2">"0.0.0.0"</code><code translate="no" class="p">,</code> <code translate="no" class="n">port</code><code translate="no" class="o">=</code><code translate="no" class="mi">5003</code><code translate="no" class="p">)</code>
+  <code translate="no" class="k">if</code> <code translate="no" class="vm">__name__</code> <code translate="no" class="o">==</code> <code translate="no" class="s2">"__main__"</code><code translate="no" class="p">:</code>
+      <code translate="no" class="n">main</code><code translate="no" class="p">()</code></pre>
+            
+            <p>This Python code is an example of a simple plug-in that manages a to-do list. <a contenteditable="false" data-type="indexterm" data-primary="plug-ins of GPT-4" data-secondary="creating a plug-in" data-tertiary="Quart for app interaction" id="id1204"></a><a contenteditable="false" data-type="indexterm" data-primary="Quart for plug-in–app interaction" id="id1205"></a><a contenteditable="false" data-type="indexterm" data-primary="to-do list plug-in created" data-secondary="Quart for app interaction" id="id1206"></a><a contenteditable="false" data-type="indexterm" data-primary="cross-origin resource sharing (CORS)" id="id1207"></a><a contenteditable="false" data-type="indexterm" data-primary="CORS (cross-origin resource sharing)" id="id1208"></a>First the variable <code translate="no">app</code> is initialized with <code translate="no">quart_cors.cors()</code>. This line of code creates a new Quart application and configures it to allow cross-origin resource sharing (CORS) from <a href="https://chat.openai.com"><em>https://chat.openai.com</em></a>. Quart is a Python web microframework, and Quart-CORS is an extension that enables control over CORS. This setup allows the plug-in to interact with the ChatGPT application hosted at the specified URL.</p>
+            <p>Then the code defines several HTTP routes corresponding to different functionalities of the to-do list plug-in: the <code translate="no">add_todo</code> function, associated with a <code translate="no">POST</code> request, and the <code translate="no">get_todos</code> function, associated with a <code translate="no">GET</code> request. </p>
+            <p>Next, two additional endpoints are defined: <code translate="no">plugin_manifest</code> and <code translate="no">openapi_spec</code>. These endpoints serve the plug-in’s manifest file and the OpenAPI specification, which are crucial for the interaction between GPT-4 and the plug-in. These files contain detailed information about the plug-in and its API, which GPT-4 uses to know how and when to use the plug-in.</p>
+          </div></section>
+          <section data-type="sect2" data-pdf-bookmark="The Plug-in Manifest"><div class="sect2" id="the_plug_in_manifest">
+            <h2>The Plug-in Manifest</h2>
+            <p>Each plug-in requires an <em>ai-plugin.json</em> file on the API’s domain.<a contenteditable="false" data-type="indexterm" data-primary="plug-ins of GPT-4" data-secondary="creating a plug-in" data-tertiary="manifest" id="id1209"></a><a contenteditable="false" data-type="indexterm" data-primary="to-do list plug-in created" data-secondary="manifest" id="id1210"></a><a contenteditable="false" data-type="indexterm" data-primary="manifest for to-do list plug-in" id="id1211"></a><a contenteditable="false" data-type="indexterm" data-primary="ai-plugin.json on plug-in API domain" id="id1212"></a><a contenteditable="false" data-type="indexterm" data-primary="JSON file for plug-in manifest" id="id1213"></a> So, for example, if your company provides service on <em>thecompany.com</em>, you must host this file at <em>https://thecompany.com/.well-known</em>. OpenAI will look for this file in <em>/.well-known/ai-plugin.json</em> when installing the plug-in. Without this file, the plug-in can’t be installed.</p>
+            <p>Here is a minimal definition of the required <em>ai-plugin.json</em> file:</p>
+            
+              <pre translate="no" data-type="programlisting">{
+      "schema_version": "v1",
+      "name_for_human": "TODO Plugin",
+      "name_for_model": "todo",
+      "description_for_human": "Plugin for managing a TODO list. \
+          You can add, remove and view your TODOs.",
+      "description_for_model": "Plugin for managing a TODO list. \
+          You can add, remove and view your TODOs.",
+      "auth": {
+          "type": "none"
+      },
+      "api": {
+          "type": "openapi",
+          "url": "http://localhost:3333/openapi.yaml",
+          "is_user_authenticated": false
+      },
+      "logo_url": "http://localhost:3333/logo.png",
+      "contact_email": "support@thecompany.com",
+      "legal_info_url": "http://www.thecompany.com/legal"
+  }      </pre>
+           
+            <p>The fields are detailed in <a data-type="xref" href="#table-5-1">Table&nbsp;5-1</a>.</p>
+            <table class="lines" id="table-5-1">
+              <caption><span class="label">Table 5-1. </span>Descriptions of the fields required in the <em>ai-plugin.json file</em></caption>
+              <thead><tr>
+                <th>Field name</th>
+                <th>Type</th>
+                <th>Description</th>
+              </tr></thead>
+             <tbody> 
+              <tr>
+                <td>
+                  <code translate="no">name_for_model </code>
+                </td>
+                <td>String</td>
+                <td>A short name the model uses to know your plug-in. It can only include letters and numbers, and it can have no more than 50 characters.</td>
+              </tr>
+              <tr>
+                <td>
+                  <code translate="no">name_for_human </code>
+                </td>
+                <td>String</td>
+                <td>The name people see. It could be your company’s full name, but it must be fewer than 20 characters.</td>
+              </tr>
+              <tr>
+                <td>
+                 <span class="keep-together"><code translate="no">description_for_human </code></span>
+                </td>
+                <td>String</td>
+                <td>A simple explanation of what your plug-in does. It’s for people to read and should be fewer than 100 characters.</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="keep-together"><code translate="no">description_for_model </code></span>
+                </td>
+                <td>String</td>
+                <td>A detailed explanation that helps the AI understand your plug-in. Therefore, explaining the plug-in’s purpose to the model is crucial. The description can be up to 8,000 characters long.</td>
+              </tr>
+              <tr>
+                <td>
+                  <code translate="no">logo_url </code>
+                </td>
+                <td>String</td>
+                <td>The URL of your plug-in’s logo. The logo should ideally be 512 × 512 pixels.</td>
+              </tr>
+              <tr>
+                <td>
+                  <code translate="no">contact_email </code>
+                </td>
+                <td>String</td>
+                <td>An email address people can use if they need help.</td>
+              </tr>
+              <tr>
+                <td>
+                  <code translate="no">legal_info_url</code>
+                </td>
+                <td>String</td>
+                <td>A web address that lets users find more details about your plug-in.</td>
+              </tr></tbody>
+            </table>
+          </div></section>
+          <section data-type="sect2" data-pdf-bookmark="The OpenAPI Specification"><div class="sect2" id="the_openapi_specification">
+            <h2>The OpenAPI Specification</h2>
+            <p>The next step in creating your plug-in<a contenteditable="false" data-type="indexterm" data-primary="plug-ins of GPT-4" data-secondary="creating a plug-in" data-tertiary="OpenAPI specification" id="id1214"></a><a contenteditable="false" data-type="indexterm" data-primary="to-do list plug-in created" data-secondary="OpenAPI specification" id="id1215"></a><a contenteditable="false" data-type="indexterm" data-primary="yaml file for OpenAI specification of to-do list plug-in" id="id1216"></a><a contenteditable="false" data-type="indexterm" data-primary="OpenAI" data-secondary="plug-in specification yaml file" id="id1217"></a><a contenteditable="false" data-type="indexterm" data-primary="openapi.yaml with plug-in specification" id="id1218"></a> is to create the <em>openapi.yaml</em> file with your API specification. This file must follow the OpenAPI standard (see <a data-type="xref" href="#understandingopenapi">“Understanding the OpenAPI Specification ”</a>). The GPT model only knows your API through the information detailed in this API specification file and the manifest file. </p>
+            <p>Here is an example with the first line of an <em>openapi.yaml</em> file for the to-do list definition plug-in:</p>
+         
+              <pre translate="no" data-type="programlisting">openapi: 3.0.1
+  info:
+    title: TODO Plugin
+    description: A plugin that allows the user to create and manage a TODO list
+    using ChatGPT. If you do not know the user's username, ask them first before
+    making queries to the plugin. Otherwise, use the username "global".
+    version: 'v1'
+  servers:
+    - url: http://localhost:5003
+  paths:
+    /todos/{username}:
+      get:
+        operationId: getTodos
+        summary: Get the list of todos
+        parameters:
+        - in: path
+          name: username
+          schema:
+              type: string
+          required: true
+          description: The name of the user.
+        responses:
+          "200":
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/getTodosResponse'
+  [...]</pre>
+          
+            <p>Think of the OpenAPI Specification as descriptive documentation that should be enough by itself to understand and use your API. When a search is performed in GPT-4, the description in the info section is used to determine the relevance of the plug-in to the user’s search. The rest of the OpenAPI Specification follows the standard OpenAPI format. Many tools can automatically generate OpenAPI specifications based on your existing API code or the other way around.</p>
+            <aside data-type="sidebar" epub:type="sidebar"><div class="sidebar" id="understandingopenapi">
+              <h1>Understanding the OpenAPI Specification </h1>
+              <p>The <a href="https://oreil.ly/1asy5">OpenAPI Specification</a> (previously known as the Swagger Specification) is<a contenteditable="false" data-type="indexterm" data-primary="Swagger Specification" id="id1219"></a><a contenteditable="false" data-type="indexterm" data-primary="OpenAI" data-secondary="plug-in specification yaml file" data-tertiary="explained" id="id1220"></a><a contenteditable="false" data-type="indexterm" data-primary="plug-ins of GPT-4" data-secondary="creating a plug-in" data-tertiary="OpenAPI specification explained" id="id1221"></a><a contenteditable="false" data-type="indexterm" data-primary="to-do list plug-in created" data-secondary="OpenAPI specification" data-tertiary="explained" id="id1222"></a> a standard for describing HTTP APIs. An OpenAPI definition allows consumers to interact with the remote service without requiring additional documentation or access to the source code. An OpenAPI document can serve as a foundation for various valuable use cases, such as generating API documentation, creating servers and clients in multiple programming languages through code generation tools, facilitating testing processes, and much more.</p>
+              <p>An OpenAPI document, in JSON or YAML format, defines or describes the API and the API’s elements. The basic OpenAPI documentation starts with the version, title, description, and version number.</p>
+              <p>If you want to delve further into this topic, the <a href="https://github.com/OAI/OpenAPI-Specification">OpenAPI GitHub repository</a> contains documentation and various <span class="keep-together">examples.</span></p>
+            </div></aside>
+          </div></section>
+          <section data-type="sect2" data-pdf-bookmark="Descriptions"><div class="sect2" id="descriptions">
+            <h2>Descriptions</h2>
+            <p>When a user request could potentially<a contenteditable="false" data-type="indexterm" data-primary="plug-ins of GPT-4" data-secondary="creating a plug-in" data-tertiary="descriptions" id="id1223"></a><a contenteditable="false" data-type="indexterm" data-primary="to-do list plug-in created" data-secondary="descriptions of plug-in" id="id1224"></a><a contenteditable="false" data-type="indexterm" data-primary="description of plug-in" id="id1225"></a><a contenteditable="false" data-type="indexterm" data-primary="OpenAI" data-secondary="plug-in specification yaml file" data-tertiary="descriptions of plug-in" id="id1226"></a><a contenteditable="false" data-type="indexterm" data-primary="openapi.yaml with plug-in specification" data-secondary="descriptions of plug-in" id="id1227"></a><a contenteditable="false" data-type="indexterm" data-primary="plug-ins of GPT-4" data-secondary="creating a plug-in" data-tertiary="OpenAPI specification description of plug-in" id="id1228"></a><a contenteditable="false" data-type="indexterm" data-primary="to-do list plug-in created" data-secondary="OpenAPI specification" data-tertiary="descriptions of plug-in" id="id1229"></a><a contenteditable="false" data-type="indexterm" data-primary="yaml file for OpenAI specification of to-do list plug-in" data-secondary="description of plug-in" id="id1230"></a> benefit from a plug-in, the model initiates a scan of the endpoint descriptions within the OpenAPI Specification, as well as the <code translate="no">description_for_model</code> attribute in the manifest file. Your goal is to create the most appropriate response, which often involves testing different requests and descriptions.</p>
+            <p>The OpenAPI document should provide a wide range of details about the API, such as the available functions and their respective parameters. It should also contain attribute-specific “description” fields that provide valuable, naturally written explanations of what each function does and what type of information a query field expects. These descriptions guide the model in making the most appropriate use of the API.</p>
+            <p>A key element in this process is the <code translate="no">description_for_model</code> attribute. This gives you a way to inform the model on how to use the plug-in. Creating concise, clear, and descriptive instruction is highly recommended. </p>
+            <p>However, following certain best practices when writing these descriptions is essential:</p>
+            <ul><li>Do not attempt to influence the mood, personality, or exact responses of GPT. </li>
+            <li>Avoid directing GPT to use a specific plug-in unless the user explicitly requests that category of service. </li>
+            <li>Do not prescribe specific triggers for GPT to use the plug-in, as it is designed to autonomously determine when the use of a plug-in is appropriate. </li></ul>
+            <p>To recap, developing a plug-in for GPT-4 involves creating an API, specifying its behavior in an OpenAPI specification, and describing the plug-in and its usage in a manifest file. With this setup, GPT-4 can effectively act as an intelligent API caller, expanding its capabilities beyond text generation.</p>
+          </div></section>
+        </div></section>
+        <section data-type="sect1" class="pagebreak-before" data-pdf-bookmark="Summary"><div class="sect1" id="summary_idasnxC2">
+          <h1 class="less_space">Summary</h1>
+          <p>The LangChain framework and GPT-4 plug-ins represent a significant leap forward in maximizing the potential of LLMs.</p>
+          <p>LangChain, with its robust suite of tools and modules, has become a central framework in the field of LLM. Its versatility in integrating different models, managing prompts, combining data, sequencing chains, processing agents, and employing memory management opens new avenues for developers and AI enthusiasts alike. The examples in <a data-type="xref" href="ch03.html#building_apps_with_gpt_4_and_chatgpt">Chapter&nbsp;3</a> proved the limits of writing complex instructions from scratch with the ChatGPT and GPT-4 models. Remember, the true potential of LangChain lies in the creative use of these features to solve complex tasks and transform the generic language models into powerful, fine-grained applications.</p>
+          <p class="fix_tracking3">GPT-4 plug-ins are a bridge between the language model and the contextual information available in real time. This chapter showed that developing plug-ins requires a well-structured API and descriptive files. Therefore, providing detailed and natural descriptions in these files is essential. This will help GPT-4 make the best use of your API. </p>
+          <p>The exciting world of LangChain and GPT-4 plug-ins is a testament to the rapidly evolving landscape of AI and LLMs. The insights provided in this chapter are just a tiny taste of the transformative potential of these tools. </p>
+        </div></section>
+        <section data-type="sect1" data-pdf-bookmark="Conclusion"><div class="sect1" id="conclusion">
+          <h1>Conclusion</h1>
+          <p>This book has equipped you with the necessary foundational and advanced knowledge to harness the power of LLMs and implement them in real-world applications. We covered everything from foundational principles and API integrations to advanced prompt engineering and fine-tuning, leading you toward practical use cases with OpenAI’s GPT-4 and ChatGPT models. We ended the book with a detailed look at how the LangChain framework and plug-ins can enable you to unleash the power of LLMs and build truly innovative applications.</p>
+          <p class="fix_tracking2">You now have the tools at your disposal to pioneer further into the realm of AI, developing innovative applications that leverage the strength of these advanced language models. But remember, the AI landscape is continuously evolving; so it’s essential to keep on eye on advancements and adapt accordingly. This journey into the world of LLMs is only the beginning, and your exploration should not stop here. We encourage you to use your new knowledge to explore the future of technology with artificial intelligence.</p>
+        </div></section>
+      </div></section></div>
+</div>
+
+</html>
