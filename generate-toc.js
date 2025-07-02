@@ -2,38 +2,136 @@ document.addEventListener('DOMContentLoaded', function () {
   const menuContainer = document.getElementById('menuContainer');
   if (!menuContainer) return;
 
-  // 모든 h1~h4 태그 찾기 (h5, h6 제외)
-  const headings = Array.from(document.body.querySelectorAll('h1, h2, h3, h4'));
-  if (headings.length === 0) return;
+  // 모든 chapter를 문서 순서대로 찾기
+  const chapters = Array.from(document.querySelectorAll('section[data-type="chapter"]'));
+  if (chapters.length === 0) return;
 
-  // id 자동 부여
-  headings.forEach((heading, idx) => {
-    if (!heading.id) {
-      heading.id = `heading-auto-${idx}`;
+  let toc = '<ul>';
+  let chapterCounters = {};
+
+  chapters.forEach((chapterSection, chapterIdx) => {
+    // chapter 제목 처리
+    const chapterH1 = chapterSection.querySelector('div.chapter > h1');
+    if (!chapterH1) return;
+    
+    // sidebar 내부 제목은 제외
+    let isInSidebar = false;
+    let parent = chapterH1.parentElement;
+    while (parent) {
+      if (parent.matches && (parent.matches('aside[data-type="sidebar"]') || parent.matches('div.sidebar'))) {
+        isInSidebar = true;
+        break;
+      }
+      parent = parent.parentElement;
     }
-  });
+    if (isInSidebar) return;
 
-  // 목차 생성
-  let toc = '';
-  let prevLevel = 0;
-  headings.forEach((heading, idx) => {
-    const level = parseInt(heading.tagName.substring(1));
-    const text = heading.textContent;
-    const id = heading.id;
+    // chapter 번호 추출
+    const labelSpan = chapterH1.querySelector('span.label');
+    let chapterNumber = '';
+    let chapterNumberStr = '';
+    if (labelSpan) {
+      const match = labelSpan.textContent.match(/Chapter\s+(\d+)/i);
+      if (match) {
+        chapterNumber = match[1];
+        chapterNumberStr = chapterNumber + '. ';
+        chapterCounters[chapterNumber] = [];
+      }
+    }
 
-    if (idx === 0) {
+    // chapter id 부여
+    if (!chapterH1.id) {
+      chapterH1.id = `chapter-${chapterIdx}`;
+    }
+
+    // chapter를 목차에 추가
+    if (chapterIdx > 0) toc += '</li>';
+    toc += `<li><a href="#${chapterH1.id}">${chapterNumberStr}${chapterH1.textContent}</a>`;
+
+    // 해당 chapter 내의 모든 sect 찾기
+    const sects = Array.from(chapterSection.querySelectorAll('section[data-type^="sect"]')).sort((a, b) => {
+      const aType = a.getAttribute('data-type');
+      const bType = b.getAttribute('data-type');
+      const aLevel = parseInt(aType.replace('sect', ''));
+      const bLevel = parseInt(bType.replace('sect', ''));
+      // 문서 순서대로 정렬
+      return a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1;
+    });
+
+    if (sects.length > 0) {
       toc += '<ul>';
-    } else if (level > prevLevel) {
-      toc += '<ul>'.repeat(level - prevLevel);
-    } else if (level < prevLevel) {
-      toc += '</li>'.repeat(prevLevel - level) + '</ul>'.repeat(prevLevel - level) + '<li>';
-    } else {
-      toc += '</li><li>';
+      let prevSectLevel = 0;
+
+      sects.forEach((sectSection, sectIdx) => {
+        const sectType = sectSection.getAttribute('data-type');
+        const sectLevel = parseInt(sectType.replace('sect', ''));
+        const sectH = sectSection.querySelector(`div.${sectType} > h${sectLevel}`);
+        
+        if (!sectH) return;
+
+        // sidebar, note, warning, tip 내부 제목은 제외
+        let isInSpecial = false;
+        let parent = sectH.parentElement;
+        while (parent) {
+          if (parent.matches && (
+            parent.matches('div[data-type="note"]') ||
+            parent.matches('div[data-type="warning"]') ||
+            parent.matches('div[data-type="tip"]') ||
+            parent.matches('aside[data-type="sidebar"]') ||
+            parent.matches('div.sidebar')
+          )) {
+            isInSpecial = true;
+            break;
+          }
+          parent = parent.parentElement;
+        }
+        if (isInSpecial) return;
+
+        // sect 번호 계산
+        let sectNumberStr = '';
+        if (chapterNumber && chapterCounters[chapterNumber] !== undefined) {
+          let stack = chapterCounters[chapterNumber];
+          
+          if (stack.length < sectLevel) {
+            while (stack.length < sectLevel) stack.push(1);
+          } else if (stack.length === sectLevel) {
+            stack[sectLevel - 1]++;
+          } else {
+            stack = stack.slice(0, sectLevel);
+            stack[sectLevel - 1]++;
+            chapterCounters[chapterNumber] = stack;
+          }
+          
+          sectNumberStr = chapterNumber + '.' + stack.join('.') + '. ';
+        }
+
+        // sect id 부여
+        if (!sectH.id) {
+          sectH.id = `sect-${chapterIdx}-${sectIdx}`;
+        }
+
+        // HTML 구조 생성
+        if (sectIdx === 0) {
+          // 첫 번째 sect
+          toc += '<li>';
+        } else if (sectLevel > prevSectLevel) {
+          toc += '<ul>'.repeat(sectLevel - prevSectLevel) + '<li>';
+        } else if (sectLevel < prevSectLevel) {
+          toc += '</li>'.repeat(prevSectLevel - sectLevel) + '</ul>'.repeat(prevSectLevel - sectLevel) + '<li>';
+        } else {
+          toc += '</li><li>';
+        }
+
+        toc += `<a href="#${sectH.id}">${sectNumberStr}${sectH.textContent}</a>`;
+        prevSectLevel = sectLevel;
+      });
+
+      // sect 목록 닫기
+      toc += '</li>'.repeat(prevSectLevel > 0 ? prevSectLevel : 1) + '</ul>'.repeat(prevSectLevel > 0 ? prevSectLevel : 1);
     }
-    toc += `<a href="#${id}">${text}</a>`;
-    prevLevel = level;
   });
-  toc += '</li></ul>'.repeat(prevLevel > 0 ? prevLevel : 1);
+
+  toc += '</li></ul>';
 
   // Example, Figure, Table 목록 생성 함수 (설명 텍스트 포함)
   function makeList(selector, labelPrefix) {
